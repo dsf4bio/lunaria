@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lunaria — Una selezione curata per il tuo benessere</title>
+  <meta name="description" content="Lunaria è una selezione curata di idee per la cura personale, la bellezza, il comfort e il relax, con collegamenti diretti alle schede prodotto su Amazon.it.">
+  <meta name="theme-color" content="#F7F3EE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23EAD6D1'/%3E%3Cpath d='M40 14a20 20 0 1 0 10 30 16 16 0 1 1-10-30z' fill='%233F3936'/%3E%3C/svg%3E">
+
+  <!--
+    ================================================================
+    LUNARIA — Vetrina affiliata Amazon.it
+    File unico: HTML (struttura) + CSS (design) + JavaScript (funzioni).
+    I prodotti si modificano nell'array `products`, all'inizio dello
+    <script> in fondo alla pagina. Non serve toccare altro.
+    ================================================================
+  -->
+
+  <style>
+    /* ==============================================================
+       1. VARIABILI DI DESIGN (colori, caratteri, raggi, ombre)
+       Per cambiare la palette, modifica solo questi valori.
+       ============================================================== */
+    :root {
+      --c-bg: #F7F3EE;          /* Avorio caldo — sfondo */
+      --c-card: #FFFDFA;        /* Bianco avorio — schede */
+      --c-rose: #EAD6D1;        /* Rosa cipria — dettagli */
+      --c-sage: #DFE6DA;        /* Verde salvia — benessere */
+      --c-ink: #3F3936;         /* Marrone profondo — testi e pulsanti */
+      --c-muted: #77706B;       /* Grigio caldo — testi secondari */
+      --c-ink-hover: #2C2725;
+      --c-rose-deep: #C9A79E;
+      --c-sage-deep: #9FB096;
+      --c-line: rgba(63, 57, 54, 0.12);
+      --c-line-strong: rgba(63, 57, 54, 0.22);
+      --c-alert-bg: #F6E9E5;
+      --c-alert-ink: #7A4337;
+
+      /* Caratteri di sistema: eleganti, veloci e senza richieste esterne */
+      --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "Hoefler Text", Georgia, "Times New Roman", serif;
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --shadow-soft: 0 1px 2px rgba(63, 57, 54, 0.04), 0 12px 32px -14px rgba(63, 57, 54, 0.16);
+      --shadow-hover: 0 2px 4px rgba(63, 57, 54, 0.05), 0 24px 44px -20px rgba(63, 57, 54, 0.28);
+
+      --container: 1240px;
+      --gutter: clamp(16px, 4vw, 40px);
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      color-scheme: light;
+    }
+
+    /* ==============================================================
+       2. BASE
+       ============================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--c-bg);
+      color: var(--c-ink);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, select { font: inherit; color: inherit; }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    section[id], footer[id] { scroll-margin-top: 96px; }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Indicatore di focus visibile per la navigazione da tastiera */
+    :focus-visible {
+      outline: 2px solid var(--c-ink);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -80px;
+      z-index: 200;
+      background: var(--c-ink);
+      color: var(--c-bg);
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: top 0.2s var(--ease);
+    }
+    .skip-link:focus { top: 12px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin: 14px 0 0;
+    }
+
+    /* ==============================================================
+       3. PULSANTI
+       ============================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid var(--c-ink);
+      background: var(--c-ink);
+      color: var(--c-bg);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .btn:hover { background: var(--c-ink-hover); border-color: var(--c-ink-hover); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--c-ink);
+      border-color: var(--c-line-strong);
+    }
+    .btn-ghost:hover { background: var(--c-card); color: var(--c-ink); border-color: var(--c-ink); }
+
+    .btn svg { width: 16px; height: 16px; flex: none; }
+
+    /* ==============================================================
+       4. BARRA SUPERIORE E INTESTAZIONE
+       ============================================================== */
+    .topbar {
+      background: var(--c-ink);
+      color: var(--c-bg);
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      padding: 9px var(--gutter);
+    }
+    .topbar p { margin: 0; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 243, 238, 0.88);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      backdrop-filter: saturate(140%) blur(12px);
+      border-bottom: 1px solid var(--c-line);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      letter-spacing: 0.34em;
+      /* compensa lo spazio finale della spaziatura delle lettere */
+      margin-right: -0.34em;
+    }
+
+    .logo-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      flex: none;
+      /* Falce di luna in CSS: l'ombra esterna appare solo fuori dal cerchio */
+      box-shadow: 6px -3px 0 0 var(--c-ink) inset;
+      background: var(--c-rose);
+    }
+
+    .nav ul {
+      display: flex;
+      gap: clamp(16px, 3vw, 40px);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav a {
+      position: relative;
+      display: inline-block;
+      padding: 10px 2px;
+      font-size: 0.93rem;
+      color: var(--c-muted);
+      text-decoration: none;
+      transition: color 0.2s var(--ease);
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 4px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease);
+    }
+    .nav a:hover { color: var(--c-ink); }
+    .nav a:hover::after { transform: scaleX(1); }
+
+    /* ==============================================================
+       5. HERO
+       ============================================================== */
+    .hero {
+      position: relative;
+      overflow: clip;
+      padding-block: clamp(48px, 8vw, 112px) clamp(56px, 8vw, 120px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.7rem, 6.4vw, 5.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin: 22px 0 26px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--c-muted);
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      color: var(--c-muted);
+      max-width: 36ch;
+      margin: 0 0 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-note {
+      margin: 28px 0 0;
+      font-size: 0.85rem;
+      color: var(--c-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+    }
+    .hero-note span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-note span::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--c-sage-deep);
+    }
+
+    /* Composizione grafica astratta, interamente in CSS */
+    .hero-art {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1 / 1;
+      justify-self: center;
+    }
+    .hero-art > * { position: absolute; }
+
+    .art-ring {
+      width: 64%;
+      aspect-ratio: 1;
+      right: 0;
+      top: 0;
+      border: 1px solid var(--c-line-strong);
+      border-radius: 50%;
+    }
+
+    .art-arch {
+      inset: 7% 17% 0 17%;
+      border-radius: 999px 999px 36px 36px;
+      background: linear-gradient(180deg, var(--c-rose) 0%, #F1E4E0 52%, var(--c-card) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .art-sage {
+      width: 44%;
+      aspect-ratio: 1;
+      left: 0;
+      bottom: 7%;
+      border-radius: 50%;
+      background: var(--c-sage);
+      mix-blend-mode: multiply;
+    }
+
+    .art-moon {
+      width: 21%;
+      aspect-ratio: 1;
+      top: 17%;
+      left: 34%;
+      border-radius: 50%;
+      box-shadow: 18px 12px 0 0 var(--c-card);
+      animation: float 7s ease-in-out infinite alternate;
+    }
+
+    .art-line {
+      left: 50%;
+      top: 48%;
+      bottom: 10%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--c-line-strong), transparent);
+    }
+
+    .art-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c-ink);
+      opacity: 0.35;
+    }
+    .art-dot.d1 { top: 12%; left: 12%; }
+    .art-dot.d2 { top: 30%; right: 8%; width: 4px; height: 4px; }
+    .art-dot.d3 { bottom: 4%; right: 26%; width: 5px; height: 5px; }
+
+    .art-pill {
+      top: 9%;
+      left: 2%;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--c-sage);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--c-ink);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .art-card {
+      right: 0;
+      bottom: 13%;
+      max-width: 220px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: var(--c-card);
+      box-shadow: var(--shadow-hover);
+      animation: float 8s ease-in-out infinite alternate-reverse;
+    }
+    .art-card small {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: 6px;
+    }
+    .art-card strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    /* ==============================================================
+       6. SEZIONE DEI VALORI
+       ============================================================== */
+    .values { padding-bottom: clamp(64px, 8vw, 104px); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .value {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 28px;
+      background: var(--c-card);
+      border: 1px solid var(--c-line);
+      border-radius: var(--radius-md);
+    }
+
+    .value-icon {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--c-rose);
+    }
+    .value-icon.is-sage { background: var(--c-sage); }
+    .value-icon.is-ivory { background: var(--c-bg); border: 1px solid var(--c-line); }
+    .value-icon svg { width: 22px; height: 22px; }
+
+    .value h3 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.18rem;
+      line-height: 1.3;
+      margin: 2px 0 6px;
+    }
+    .value p {
+      margin: 0;
+      color: var(--c-muted);
+      font-size: 0.94rem;
+    }
+
+    /* ==============================================================
+       7. CATALOGO: intestazione e strumenti di ricerca
+       ============================================================== */
+    .catalog { padding-bottom: clamp(72px, 9vw, 120px); }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px 40px;
+      margin-bottom: 32px;
+    }
+    .section-head p.section-intro {
+      margin: 0;
+      max-width: 44ch;
+      color: var(--c-muted);
+    }
+
+    .toolbar {
+      display: grid;
+      gap: 18px;
+      padding: 20px;
+      background: var(--c-card);
+      border: 1px solid var(--c-line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .toolbar-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+    .field label,
+    .chips-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+
+    .search-wrap { position: relative; }
+    .search-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      color: var(--c-muted);
+      pointer-events: none;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      min-height: 50px;
+      padding: 0 16px;
+      border: 1px solid var(--c-line-strong);
+      border-radius: var(--radius-sm);
+      background-color: var(--c-bg);
+      font-size: 1rem; /* 16px: evita lo zoom automatico su iPhone */
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background-color 0.2s var(--ease);
+    }
+    .input { padding-left: 46px; }
+    .input::placeholder { color: #9A928C; }
+    .input:hover, .select:hover { border-color: var(--c-ink); }
+    .input:focus-visible, .select:focus-visible {
+      outline: none;
+      border-color: var(--c-ink);
+      background-color: var(--c-card);
+      box-shadow: 0 0 0 4px var(--c-rose);
+      border-radius: var(--radius-sm);
+    }
+
+    .select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 44px;
+      cursor: pointer;
+      text-overflow: ellipsis;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233F3936' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+    }
+
+    .chips-group { display: grid; gap: 8px; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .chip {
+      min-height: 42px;
+      padding: 9px 18px;
+      border: 1px solid var(--c-line-strong);
+      border-radius: 999px;
+      background: transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .chip:hover { background: var(--c-rose); border-color: var(--c-rose); }
+    .chip[aria-pressed="true"] {
+      background: var(--c-ink);
+      border-color: var(--c-ink);
+      color: var(--c-bg);
+    }
+
+    .results-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px 20px;
+      margin: 30px 0 18px;
+    }
+    .results-count {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+    }
+    .results-disclosure {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--c-muted);
+      max-width: 62ch;
+    }
+
+    .link-button {
+      border: 0;
+      background: none;
+      padding: 6px 0;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+    }
+    .link-button:hover { color: var(--c-muted); }
+
+    /* ==============================================================
+       8. GRIGLIA E SCHEDE PRODOTTO
+       4 colonne su desktop ampi, 3 su schermi intermedi,
+       2 su smartphone, 1 sugli schermi molto stretti.
+       ============================================================== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      --tint: var(--c-rose);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-width: 0;
+      background: var(--c-card);
+      border: 1px solid var(--c-line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--c-line);
+    }
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* l'immagine non viene mai deformata */
+    }
+
+    /* Segnaposto elegante se l'immagine manca o non si carica */
+    .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 16px;
+      text-align: center;
+      color: var(--c-muted);
+      background:
+        radial-gradient(circle at 28% 22%, var(--tint) 0, transparent 62%),
+        linear-gradient(160deg, var(--c-card) 0%, var(--c-bg) 100%);
+    }
+    .ph-moon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      box-shadow: 12px 8px 0 0 rgba(63, 57, 54, 0.26);
+      transform: translate(-6px, -4px);
+    }
+    .ph-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 10px;
+      padding: 20px 20px 22px;
+    }
+
+    .card-cat {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .card-cat::before {
+      content: "";
+      flex: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--tint);
+      box-shadow: 0 0 0 1px rgba(63, 57, 54, 0.12);
+    }
+
+    .card-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.22rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .card-desc {
+      margin: 0;
+      color: var(--c-muted);
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .card-benefits {
+      display: grid;
+      gap: 7px;
+      list-style: none;
+      margin: 4px 0 0;
+      padding: 0;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+    .card-benefits li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .card-benefits li::before {
+      content: "";
+      flex: none;
+      width: 14px;
+      height: 14px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233F3936' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5'/%3E%3C/svg%3E") center / 10px no-repeat,
+        var(--c-sage);
+    }
+
+    /* Il pulsante resta sempre allineato in fondo alla scheda */
+    .card-actions {
+      margin-top: auto;
+      padding-top: 14px;
+    }
+
+    .btn-affiliate {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: 0.93rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+    .btn-affiliate.is-missing {
+      background: transparent;
+      color: var(--c-ink);
+      border-style: dashed;
+      border-color: var(--c-line-strong);
+    }
+    .btn-affiliate.is-missing:hover { border-color: var(--c-ink); background: var(--c-bg); }
+
+    .card-note {
+      margin: 10px 0 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--c-alert-bg);
+      color: var(--c-alert-ink);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    /* Nessun risultato */
+    .empty-state {
+      padding: clamp(40px, 6vw, 64px) 24px;
+      text-align: center;
+      background: var(--c-card);
+      border: 1px dashed var(--c-line-strong);
+      border-radius: var(--radius-lg);
+    }
+    .empty-state h3 {
+      margin: 0 0 8px;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
+    .empty-state p {
+      margin: 0 auto 24px;
+      max-width: 44ch;
+      color: var(--c-muted);
+    }
+
+    /* ==============================================================
+       9. SEZIONE EDITORIALE
+       ============================================================== */
+    .editorial { padding-bottom: clamp(72px, 9vw, 120px); }
+
+    .editorial-panel {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 88px);
+      padding: clamp(28px, 6vw, 76px);
+      background: var(--c-sage);
+      border-radius: var(--radius-lg);
+    }
+    .editorial-panel::before {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      right: -120px;
+      top: -140px;
+      border-radius: 50%;
+      border: 1px solid rgba(63, 57, 54, 0.14);
+      pointer-events: none;
+    }
+    .editorial-panel::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      left: -80px;
+      bottom: -110px;
+      border-radius: 50%;
+      background: rgba(255, 253, 250, 0.45);
+      pointer-events: none;
+    }
+    .editorial-panel > * { position: relative; z-index: 1; }
+
+    .editorial-text p {
+      color: #554D49;
+      margin: 18px 0 0;
+      max-width: 48ch;
+    }
+    .editorial .eyebrow { color: #5E5752; }
+
+    .rituals {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+      counter-reset: ritual;
+    }
+    .rituals li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 18px;
+      padding: 20px 22px;
+      background: rgba(255, 253, 250, 0.72);
+      border-radius: var(--radius-md);
+      counter-increment: ritual;
+    }
+    .rituals li::before {
+      content: "0" counter(ritual);
+      grid-row: span 2;
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      line-height: 1.1;
+      color: var(--c-muted);
+    }
+    .rituals strong {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.12rem;
+    }
+    .rituals span { color: #5E5752; font-size: 0.93rem; }
+
+    .health-note {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin: 0;
+      padding: 18px 22px;
+      background: var(--c-card);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: #554D49;
+    }
+    .health-note svg { flex: none; width: 22px; height: 22px; margin-top: 1px; color: var(--c-ink); }
+    .health-note strong { color: var(--c-ink); }
+
+    /* ==============================================================
+       10. FOOTER
+       ============================================================== */
+    .site-footer {
+      background: var(--c-ink);
+      color: #EDE6DF;
+      padding-block: clamp(56px, 7vw, 80px) 28px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.5fr 1fr;
+      gap: 40px;
+    }
+    .site-footer .logo { color: var(--c-bg); }
+    .site-footer .logo-mark { background: #6A615C; box-shadow: 6px -3px 0 0 var(--c-bg) inset; }
+    .footer-tagline { margin: 18px 0 0; color: #C3B9B1; max-width: 32ch; font-size: 0.94rem; }
+
+    .footer-title {
+      margin: 0 0 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C3B9B1;
+    }
+    .disclosure {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      line-height: 1.5;
+      color: var(--c-bg);
+    }
+    .footer-small { margin: 14px 0 0; font-size: 0.86rem; color: #C3B9B1; }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 4px;
+    }
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      color: var(--c-bg);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .footer-links a.is-pending { color: #C3B9B1; }
+    .pending-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border: 1px dashed rgba(237, 230, 223, 0.4);
+      border-radius: 999px;
+    }
+    .site-footer :focus-visible { outline-color: var(--c-bg); }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 24px;
+      margin-top: 48px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(237, 230, 223, 0.16);
+      font-size: 0.8rem;
+      color: #ADA39B;
+    }
+    .footer-bottom p { margin: 0; }
+
+    /* Messaggio temporaneo (toast) */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 300;
+      width: max-content;
+      max-width: min(92vw, 540px);
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--c-ink);
+      color: var(--c-bg);
+      font-size: 0.9rem;
+      line-height: 1.45;
+      box-shadow: var(--shadow-hover);
+      opacity: 0;
+      transform: translate(-50%, 16px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+      pointer-events: none;
+    }
+    .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ==============================================================
+       11. RESPONSIVE
+       ============================================================== */
+    @media (max-width: 1180px) {
+      .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { max-width: 400px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .editorial-panel { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 820px) {
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .toolbar-row { grid-template-columns: 1fr 1fr; }
+      .toolbar-row .field-search { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .site-header { position: relative; }
+      .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        min-height: 0;
+        padding-block: 14px 6px;
+      }
+      .nav ul { gap: 20px; }
+      .nav a { font-size: 0.88rem; }
+      section[id], footer[id] { scroll-margin-top: 16px; }
+
+      .hero-actions .btn { flex: 1 1 auto; }
+      .toolbar { padding: 16px; border-radius: var(--radius-md); }
+      .chip { padding: 8px 14px; font-size: 0.85rem; min-height: 40px; }
+
+      .card { border-radius: 16px; }
+      .card-media { padding: 12px; }
+      .card-body { padding: 14px 14px 16px; gap: 8px; }
+      .card-title { font-size: 1.02rem; }
+      .card-desc { font-size: 0.84rem; }
+      .card-benefits { font-size: 0.8rem; gap: 6px; }
+      .card-benefits li { gap: 7px; }
+      .card-benefits li::before { width: 13px; height: 13px; }
+      .btn-affiliate { font-size: 0.84rem; padding: 10px 10px; min-height: 46px; }
+      .ph-moon { width: 44px; height: 44px; box-shadow: 9px 6px 0 0 rgba(63, 57, 54, 0.26); }
+      .ph-label { font-size: 0.6rem; letter-spacing: 0.14em; }
+
+      .value { padding: 22px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 420px) {
+      .art-card { max-width: 170px; padding: 14px 16px; }
+      .art-card strong { font-size: 1rem; }
+      .toolbar-row { grid-template-columns: 1fr; }
+    }
+
+    /* Schermi molto stretti: una sola colonna */
+    @media (max-width: 359px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .card-title { font-size: 1.15rem; }
+      .card-desc { font-size: 0.9rem; }
+    }
+
+    /* Rispetto della preferenza "riduci movimento" */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .card:hover, .btn:hover { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#prodotti">Vai alla selezione dei prodotti</a>
+
+  <!-- ============ BARRA SUPERIORE ============ -->
+  <div class="topbar">
+    <p>Una selezione curata per il tuo benessere quotidiano</p>
+  </div>
+
+  <!-- ============ INTESTAZIONE ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top" aria-label="Lunaria, torna all'inizio">
+        <span class="logo-mark" aria-hidden="true"></span>
+        LUNARIA
+      </a>
+      <nav class="nav" aria-label="Navigazione principale">
+        <ul>
+          <li><a href="#prodotti">Prodotti</a></li>
+          <li><a href="#filosofia">La filosofia</a></li>
+          <li><a href="#informazioni">Informazioni</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Cura personale · Comfort · Relax</p>
+          <h1 id="hero-title">Il tuo benessere, <em>ogni giorno.</em></h1>
+          <p class="hero-lead">Una selezione di idee per prenderti cura di te: dalla routine di bellezza ai momenti di relax, fino ai piccoli comfort quotidiani.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#prodotti">
+              Scopri la selezione
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#filosofia">La nostra filosofia</a>
+          </div>
+          <p class="hero-note">
+            <span>15 idee selezionate</span>
+            <span>5 categorie</span>
+            <span>Link diretti ad Amazon.it</span>
+          </p>
+        </div>
+
+        <!-- Composizione decorativa: solo CSS, nessuna immagine esterna -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-ring"></div>
+          <div class="art-arch"></div>
+          <div class="art-sage"></div>
+          <div class="art-line"></div>
+          <div class="art-moon"></div>
+          <div class="art-dot d1"></div>
+          <div class="art-dot d2"></div>
+          <div class="art-dot d3"></div>
+          <div class="art-pill">Benessere</div>
+          <div class="art-card">
+            <small>Ogni giorno</small>
+            <strong>Piccoli gesti, grande cura.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VALORI ============ -->
+    <section class="values" aria-label="Cosa trovi su Lunaria">
+      <div class="container">
+        <ul class="values-grid">
+          <li class="value">
+            <span class="value-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></svg>
+            </span>
+            <div>
+              <h3>Scelti per la cura personale</h3>
+              <p>Idee per la skincare, i capelli e la routine di bellezza, raccolte in un unico posto.</p>
+            </div>
+          </li>
+          <li class="value">
+            <span class="value-icon is-sage" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+            </span>
+            <div>
+              <h3>Comfort e relax</h3>
+              <p>Accessori per il riposo, il calore e i momenti di pausa che ti dedichi durante la giornata.</p>
+            </div>
+          </li>
+          <li class="value">
+            <span class="value-icon is-ivory" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+            </span>
+            <div>
+              <h3>Collegamenti diretti ad Amazon</h3>
+              <p>Ogni scheda rimanda alla pagina del prodotto su Amazon.it, dove trovi prezzo e disponibilità aggiornati.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ CATALOGO ============ -->
+    <section class="catalog" id="prodotti" aria-labelledby="catalog-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">La selezione</p>
+            <h2 class="section-title" id="catalog-title">Idee per prenderti cura di te</h2>
+          </div>
+          <p class="section-intro">Cerca per nome o caratteristica, scegli una categoria e ordina la selezione come preferisci.</p>
+        </div>
+
+        <!-- Ricerca, filtri e ordinamento -->
+        <div class="toolbar" role="search" aria-label="Cerca e filtra i prodotti">
+          <div class="toolbar-row">
+            <div class="field field-search">
+              <label for="search-input">Cerca</label>
+              <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                <input class="input" id="search-input" type="search" placeholder="Es. calore, cuscino, capelli…" autocomplete="off" spellcheck="false" aria-controls="product-grid">
+              </div>
+            </div>
+            <div class="field">
+              <label for="category-select">Categoria</label>
+              <select class="select" id="category-select" aria-controls="product-grid">
+                <!-- Opzioni generate dal JavaScript a partire da CATEGORIES -->
+              </select>
+            </div>
+            <div class="field">
+              <label for="sort-select">Ordina per</label>
+              <select class="select" id="sort-select" aria-controls="product-grid">
+                <option value="recommended">Ordine consigliato</option>
+                <option value="name-asc">Nome (A–Z)</option>
+                <option value="name-desc">Nome (Z–A)</option>
+              </select>
+            </div>
+          </div>
+          <div class="chips-group">
+            <span class="chips-label" id="chips-label">Categorie rapide</span>
+            <ul class="chips" id="category-chips" aria-labelledby="chips-label">
+              <!-- Pulsanti generati dal JavaScript -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="results-bar">
+          <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></p>
+          <button class="link-button" type="button" id="reset-filters" hidden>Azzera ricerca e filtri</button>
+        </div>
+        <p class="results-disclosure">I pulsanti “Verifica disponibilità” rimandano ad Amazon.it tramite link di affiliazione. Prezzi, disponibilità e condizioni di vendita sono indicati esclusivamente sulla pagina Amazon del prodotto.</p>
+        <div style="height:18px" aria-hidden="true"></div>
+
+        <div class="product-grid" id="product-grid"></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <h3>Nessun prodotto trovato</h3>
+          <p>Prova con un'altra parola o scegli una categoria diversa. Puoi anche tornare alla selezione completa.</p>
+          <button class="btn" type="button" id="empty-reset">Mostra tutti i prodotti</button>
+        </div>
+
+        <!-- Descrizione condivisa dai pulsanti di affiliazione (lettori di schermo) -->
+        <p class="visually-hidden" id="affiliate-hint">Apre la pagina del prodotto su Amazon.it in una nuova scheda. Link di affiliazione.</p>
+      </div>
+    </section>
+
+    <!-- ============ SEZIONE EDITORIALE ============ -->
+    <section class="editorial" id="filosofia" aria-labelledby="editorial-title">
+      <div class="container">
+        <div class="editorial-panel">
+          <div class="editorial-text">
+            <p class="eyebrow">La filosofia</p>
+            <h2 class="section-title" id="editorial-title">Prendersi cura di sé, con semplicità.</h2>
+            <p>Lunaria raccoglie idee e accessori per la routine personale, il comfort e il relax. Non promettiamo trasformazioni: proponiamo piccoli strumenti che possono rendere più piacevoli i gesti di tutti i giorni.</p>
+            <p>Ogni proposta è descritta con parole semplici e realistiche. Prima dell'acquisto ti invitiamo a leggere con attenzione la scheda su Amazon.it: caratteristiche, materiali, istruzioni d'uso e opinioni degli acquirenti.</p>
+          </div>
+
+          <ol class="rituals">
+            <li><strong>Routine</strong><span>Un momento lento per la pelle e i capelli, a inizio o fine giornata.</span></li>
+            <li><strong>Comfort</strong><span>Calore, morbidezza e sostegno per sentirti a tuo agio, anche nei giorni più impegnativi.</span></li>
+            <li><strong>Relax</strong><span>Accessori per il riposo e per staccare qualche minuto da tutto.</span></li>
+          </ol>
+
+          <p class="health-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5v.01"/></svg>
+            <span><strong>Una nota importante.</strong> I prodotti presentati sono accessori per il comfort e la cura personale: non servono a diagnosticare, curare o prevenire disturbi e non sostituiscono il parere di un medico o di un professionista sanitario. In caso di dolore intenso, persistente o insolito, anche legato al ciclo, rivolgiti al tuo medico. Per i prodotti che scaldano o raffreddano, segui sempre le istruzioni del produttore.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER E TRASPARENZA ============ -->
+  <footer class="site-footer" id="informazioni" aria-labelledby="footer-title">
+    <div class="container">
+      <h2 class="visually-hidden" id="footer-title">Informazioni</h2>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="#top" aria-label="Lunaria, torna all'inizio">
+            <span class="logo-mark" aria-hidden="true"></span>
+            LUNARIA
+          </a>
+          <p class="footer-tagline">Idee selezionate per la cura personale, il comfort e il benessere di ogni giorno.</p>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Trasparenza</h3>
+          <!-- ✏️ Verifica la formulazione richiesta dalle condizioni aggiornate
+               del Programma Affiliazione Amazon.it prima di pubblicare. -->
+          <p class="disclosure">In qualità di Affiliato Amazon, ricevo un guadagno dagli acquisti idonei.</p>
+          <p class="footer-small">Lunaria è una vetrina indipendente e non è il negozio ufficiale di Amazon. Prezzi, disponibilità e condizioni di vendita sono stabiliti e mostrati esclusivamente su Amazon.it.</p>
+        </div>
+
+        <div>
+          <h3 class="footer-title">Link utili</h3>
+          <ul class="footer-links">
+            <li><a href="https://www.amazon.it/" target="_blank" rel="nofollow noopener noreferrer">Amazon.it</a></li>
+            <!-- Gli URL di queste pagine si impostano in SITE_CONFIG, nello script -->
+            <li><a href="#informazioni" data-config-key="privacyPolicyUrl">Privacy policy</a></li>
+            <li><a href="#informazioni" data-config-key="cookiePolicyUrl">Cookie policy</a></li>
+            <li><a href="#informazioni" data-config-key="contactUrl">Contatti</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Lunaria. Tutti i diritti riservati.</p>
+        <p>Amazon e il logo Amazon sono marchi di Amazon.com, Inc. o delle sue società affiliate.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+
+    /* ================================================================
+       ✏️ 1. PRODOTTI — QUI MODIFICHI TUTTO IL CATALOGO
+       ----------------------------------------------------------------
+       Per ogni prodotto:
+       - id           → codice unico, senza spazi (es. "cintura-termica")
+       - title        → nome mostrato nella scheda
+       - category     → deve essere uguale a una delle categorie in CATEGORIES
+       - description  → descrizione breve (1–2 frasi, toni prudenti)
+       - benefits     → 2 o 3 caratteristiche, tra virgolette e separate da virgole
+       - affiliateUrl → il TUO link affiliato (qualsiasi link https://, anche brevi come https://link.amazon/...)
+       - imageUrl     → indirizzo della foto del prodotto. Sulla pagina Amazon: clic destro
+                        sulla foto principale → "Copia indirizzo immagine" e incollalo qui.
+                        Deve iniziare con https://m.media-amazon.com/images/I/...
+       - asin         → FACOLTATIVO. Codice Amazon di 10 caratteri. Se imageUrl è vuoto, la pagina
+                        prova a caricare la foto dall'ASIN, ma Amazon la fornisce solo per alcuni
+                        prodotti (spesso quelli meno recenti): per gli altri compare il segnaposto.
+       I dati qui sotto sono ESEMPI: sostituiscili con i prodotti reali
+       e verifica che descrizione e benefici corrispondano all'articolo scelto.
+       L'ordine dell'array è l'"Ordine consigliato".
+       ================================================================ */
+    const products = [
+      {
+        id: "cintura-termica",
+        title: "Cintura termica per il ciclo",
+        category: "Ciclo mestruale e comfort",
+        description: "Una fascia riscaldante da indossare in vita, pensata per regalarti una piacevole sensazione di calore nei giorni del ciclo.",
+        benefits: ["Sensazione di calore avvolgente", "Fascia regolabile in vita", "Da usare a casa o in ufficio"],
+        affiliateUrl: "https://link.amazon/B05lbXtVl",
+        asin: "B0C32XW9DL",     // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: "https://m.media-amazon.com/images/I/61pnjnS3MbL._AC_SL500_.jpg"
+      },
+      {
+        id: "rullo-viso",
+        title: "Rullo massaggiante per il viso",
+        category: "Cura della pelle",
+        description: "Un piccolo strumento da passare delicatamente sul viso, per trasformare la skincare in un momento di cura e lentezza.",
+        benefits: ["Gesto rilassante nella routine", "Si abbina a sieri e creme", "Facile da pulire e riporre"],
+        affiliateUrl: "https://link.amazon/B07Mkps8h",
+        asin: "B0H4QHS6Y7",
+        imageUrl: "https://m.media-amazon.com/images/I/71LT6xD5oYL._AC_SL500_.jpg"
+      },
+      {
+        id: "cuscino-ergonomico",
+        title: "Cuscino ergonomico per dormire",
+        category: "Sonno e relax",
+        description: "Una forma pensata per accompagnare collo e spalle durante il riposo e aiutarti a trovare una posizione più confortevole.",
+        benefits: ["Sostegno per collo e spalle", "Forma studiata per il riposo", "Da scegliere in base a come dormi"],
+        affiliateUrl: "https://link.amazon/B06109Hu2",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: "https://m.media-amazon.com/images/I/718ZL7ApAqL._AC_SL1500_.jpg"    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "spazzola-districante",
+        title: "Spazzola districante",
+        category: "Capelli e bellezza",
+        description: "Setole flessibili che scorrono tra i nodi con delicatezza, per una spazzolatura più piacevole ogni giorno.",
+        benefits: ["Setole flessibili", "Gesto delicato sui nodi", "Formato comodo da borsa"],
+        affiliateUrl: "https://link.amazon/B0cSH8yDE",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: "https://m.media-amazon.com/images/I/815+fKxC7YL._AC_SL1500_.jpg"    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "massaggiatore-corpo",
+        title: "Massaggiatore per il corpo",
+        category: "Benessere quotidiano",
+        description: "Per concederti qualche minuto di massaggio rilassante su spalle, schiena e gambe dopo una lunga giornata.",
+        benefits: ["Un momento di relax a fine giornata", "Per spalle, schiena e gambe", "Diverse intensità, secondo il modello"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "mascherina-sonno",
+        title: "Mascherina per dormire",
+        category: "Sonno e relax",
+        description: "Morbida e leggera, scherma la luce per accompagnarti nel riposo, a casa come in viaggio.",
+        benefits: ["Scherma la luce", "Tessuto morbido sulla pelle", "Perfetta anche in viaggio"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "maschere-viso",
+        title: "Maschere in tessuto per il viso",
+        category: "Cura della pelle",
+        description: "Un piccolo rituale di bellezza da concederti la sera o nel weekend, con formule diverse in base alle esigenze della pelle.",
+        benefits: ["Rituale di bellezza veloce", "Formule per diverse esigenze", "Monouso e pratiche"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "borsa-acqua-calda",
+        title: "Borsa dell'acqua calda con fodera",
+        category: "Ciclo mestruale e comfort",
+        description: "Un classico intramontabile per le serate fredde e per i giorni in cui serve un po' di calore in più.",
+        benefits: ["Fodera morbida al tatto", "Calore piacevole sul divano o a letto", "Da riempire seguendo le istruzioni"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "spazzola-cuoio-capelluto",
+        title: "Spazzola massaggiante per il cuoio capelluto",
+        category: "Capelli e bellezza",
+        description: "Punte morbide per un massaggio rilassante durante lo shampoo o a capelli asciutti.",
+        benefits: ["Massaggio delicato e rilassante", "Utilizzabile anche sotto la doccia", "Impugnatura comoda"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "cuscino-gambe",
+        title: "Cuscino per le gambe",
+        category: "Sonno e relax",
+        description: "Da posizionare tra le ginocchia quando dormi su un fianco, per trovare una posizione più comoda.",
+        benefits: ["Pensato per chi dorme sul fianco", "Forma che segue le gambe", "Utile anche per il relax sul divano"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "impacco-caldo-freddo",
+        title: "Impacco caldo/freddo riutilizzabile",
+        category: "Ciclo mestruale e comfort",
+        description: "Un impacco in gel da scaldare o raffreddare secondo le istruzioni, per una piacevole sensazione di caldo o di fresco.",
+        benefits: ["Utilizzabile caldo o freddo", "Riutilizzabile più volte", "Formato flessibile"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "organizer-skincare",
+        title: "Organizer per prodotti skincare",
+        category: "Cura della pelle",
+        description: "Riunisce creme, sieri e trucchi in un unico spazio, per una routine più ordinata e piacevole da seguire.",
+        benefits: ["Tutto a portata di mano", "Scomparti di diverse misure", "Ideale per bagno o toeletta"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "accessori-capelli",
+        title: "Elastici e fermagli in raso",
+        category: "Capelli e bellezza",
+        description: "Accessori morbidi ed eleganti per raccogliere i capelli con delicatezza, di giorno o per la notte.",
+        benefits: ["Tessuto morbido", "Stile semplice ed elegante", "Più colori in un unico set"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "rullo-schiuma",
+        title: "Rullo in schiuma per il corpo",
+        category: "Benessere quotidiano",
+        description: "Un accessorio versatile per accompagnare lo stretching e i momenti di movimento dolce a casa.",
+        benefits: ["Per stretching e movimento dolce", "Leggero e facile da riporre", "Adatto alla pratica a casa"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      },
+      {
+        id: "cuscino-lombare",
+        title: "Cuscino lombare per la seduta",
+        category: "Benessere quotidiano",
+        description: "Un supporto da sistemare sulla sedia o in auto, per rendere più confortevoli le ore passate seduta.",
+        benefits: ["Più comfort sulla sedia", "In ufficio, a casa o in auto", "Facile da spostare"],
+        affiliateUrl: "",
+        asin: "",       // facoltativo: serve solo se il link non contiene il codice ASIN
+        imageUrl: ""    // facoltativo: lascia "" per usare la foto Amazon automatica
+      }
+    ];
+
+    /* ================================================================
+       ✏️ 2. CONFIGURAZIONE DEL SITO
+       Incolla qui gli URL delle tue pagine informative quando le avrai create.
+       Finché un campo resta vuoto, il link nel footer mostra "da completare".
+       ================================================================ */
+    const SITE_CONFIG = {
+      privacyPolicyUrl: "",   // es. "privacy.html" oppure "https://tuosito.it/privacy"
+      cookiePolicyUrl: "",    // es. "cookie.html"
+      contactUrl: ""          // es. "contatti.html" oppure "mailto:info@tuosito.it"
+    };
+
+    /* ================================================================
+       ✏️ 3. CATEGORIE
+       "label" è il nome mostrato e deve coincidere con il campo
+       "category" dei prodotti. "tint" è il colore del segnaposto.
+       ================================================================ */
+    const CATEGORIES = [
+      { label: "Cura della pelle",          tint: "#EAD6D1" },
+      { label: "Capelli e bellezza",        tint: "#EBDDCB" },
+      { label: "Ciclo mestruale e comfort", tint: "#E7CDC8" },
+      { label: "Sonno e relax",             tint: "#E1DDE6" },
+      { label: "Benessere quotidiano",      tint: "#DFE6DA" }
+    ];
+
+    /* ================================================================
+       DA QUI IN POI NON È NECESSARIO MODIFICARE NULLA
+       ================================================================ */
+
+    const ALL_CATEGORIES = "all";
+
+    const state = {
+      query: "",
+      category: ALL_CATEGORIES,
+      sort: "recommended"
+    };
+
+    const els = {
+      grid: document.getElementById("product-grid"),
+      empty: document.getElementById("empty-state"),
+      count: document.getElementById("results-count"),
+      search: document.getElementById("search-input"),
+      categorySelect: document.getElementById("category-select"),
+      sortSelect: document.getElementById("sort-select"),
+      chips: document.getElementById("category-chips"),
+      reset: document.getElementById("reset-filters"),
+      emptyReset: document.getElementById("empty-reset"),
+      toast: document.getElementById("toast")
+    };
+
+    /* ---------- Utilità ---------- */
+
+    // Minuscole e senza accenti: "Bellezza" e "bellézza" trovano lo stesso risultato
+    function normalize(text) {
+      return String(text || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "")
+        .trim();
+    }
+
+    function getCategory(label) {
+      return CATEGORIES.find(function (c) { return c.label === label; }) || null;
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        els.toast.classList.remove("is-visible");
+      }, 5200);
+    }
+
+    /* ---------- Validazione dei link affiliati ---------- */
+    function checkAffiliateUrl(raw) {
+      const value = String(raw || "").trim();
+      if (!value) return { ok: false, reason: "missing" };
+
+      let url;
+      try {
+        url = new URL(value);
+      } catch (e) {
+        return { ok: false, reason: "invalid" };
+      }
+      // Qualsiasi dominio è accettato; si escludono solo indirizzi non web (es. javascript:)
+      if (url.protocol !== "https:" && url.protocol !== "http:") return { ok: false, reason: "invalid" };
+      return { ok: true, href: url.href, url: url };
+    }
+
+    function affiliateErrorMessage(product, reason) {
+      const id = product.id || "(senza id)";
+      if (reason === "missing") {
+        return "Link affiliato mancante: compila il campo \"affiliateUrl\" del prodotto \"" + id + "\" nell'array products.";
+      }
+      return "Il campo \"affiliateUrl\" del prodotto \"" + id + "\" non contiene un indirizzo valido: deve iniziare con https://";
+    }
+
+    /* ---------- Foto automatica dal codice ASIN ---------- */
+    const ASIN_PATTERN = /^[A-Z0-9]{10}$/i;
+
+    // Legge l'ASIN dai link Amazon completi (/dp/…, /gp/product/…, ecc.)
+    function extractAsin(link) {
+      const match = String(link || "").match(/(?:\/dp\/|\/gp\/product\/|\/gp\/aw\/d\/|\/exec\/obidos\/asin\/|[?&]asin=)([A-Z0-9]{10})(?=[\/?&#]|$)/i);
+      return match ? match[1].toUpperCase() : null;
+    }
+
+    function getProductAsin(product) {
+      const manual = String(product.asin || "").trim();
+      if (ASIN_PATTERN.test(manual)) return manual.toUpperCase();
+      return extractAsin(product.affiliateUrl);
+    }
+
+    function amazonImageUrl(asin) {
+      return "https://images-eu.ssl-images-amazon.com/images/P/" + asin + ".01._SCLZZZZZZZ_SL500_.jpg";
+    }
+
+    // Ordine: imageUrl manuale → foto Amazon dall'ASIN → nessuna (segnaposto)
+    function getProductImage(product) {
+      const manual = getSafeImageUrl(product.imageUrl);
+      if (manual) return manual;
+      const asin = getProductAsin(product);
+      return asin ? amazonImageUrl(asin) : null;
+    }
+
+    /* ---------- Validazione degli URL delle immagini ---------- */
+    // Accetta indirizzi https:// oppure percorsi locali (es. "img/cuscino.jpg")
+    function getSafeImageUrl(raw) {
+      const value = String(raw || "").trim();
+      if (!value) return null;
+
+      const isAbsolute = /^([a-z][a-z0-9+.-]*:|\/\/)/i.test(value);
+      try {
+        const url = new URL(value, document.baseURI);
+        if (isAbsolute && url.protocol !== "https:") return null;
+        return url.href;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    /* ---------- Costruzione delle schede (solo metodi DOM sicuri) ---------- */
+    function createPlaceholder(product) {
+      const ph = document.createElement("div");
+      ph.className = "ph";
+      ph.setAttribute("role", "img");
+      ph.setAttribute("aria-label", "Immagine non ancora disponibile per " + product.title);
+
+      const moon = document.createElement("span");
+      moon.className = "ph-moon";
+      moon.setAttribute("aria-hidden", "true");
+
+      const label = document.createElement("span");
+      label.className = "ph-label";
+      label.setAttribute("aria-hidden", "true");
+      label.textContent = "Lunaria";
+
+      ph.append(moon, label);
+      return ph;
+    }
+
+    function createExternalIcon() {
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "currentColor");
+      svg.setAttribute("stroke-width", "1.6");
+      svg.setAttribute("stroke-linecap", "round");
+      svg.setAttribute("stroke-linejoin", "round");
+      svg.setAttribute("aria-hidden", "true");
+      ["M7 17L17 7", "M9 7h8v8"].forEach(function (d) {
+        const path = document.createElementNS(ns, "path");
+        path.setAttribute("d", d);
+        svg.appendChild(path);
+      });
+      return svg;
+    }
+
+    function createCard(product) {
+      const titleId = "title-" + product.id;
+      const card = document.createElement("article");
+      card.className = "card";
+      card.setAttribute("aria-labelledby", titleId);
+
+      const category = getCategory(product.category);
+      if (category) card.style.setProperty("--tint", category.tint);
+
+      // Immagine (o segnaposto se manca / non si carica)
+      const media = document.createElement("div");
+      media.className = "card-media";
+      const imageSrc = getProductImage(product);
+      if (imageSrc) {
+        const img = document.createElement("img");
+        img.alt = product.title;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.referrerPolicy = "no-referrer";
+        img.width = 600;
+        img.height = 600;
+        const showPlaceholder = function () {
+          if (img.isConnected) img.replaceWith(createPlaceholder(product));
+        };
+        img.addEventListener("error", showPlaceholder, { once: true });
+        // Se l'ASIN non esiste, Amazon restituisce un'immagine vuota di 1×1 pixel
+        img.addEventListener("load", function () {
+          if (img.naturalWidth < 10) showPlaceholder();
+        }, { once: true });
+        img.src = imageSrc;
+        media.appendChild(img);
+      } else {
+        media.appendChild(createPlaceholder(product));
+      }
+
+      // Testi
+      const body = document.createElement("div");
+      body.className = "card-body";
+
+      const cat = document.createElement("p");
+      cat.className = "card-cat";
+      cat.textContent = product.category;
+
+      const title = document.createElement("h3");
+      title.className = "card-title";
+      title.id = titleId;
+      title.textContent = product.title;
+
+      const desc = document.createElement("p");
+      desc.className = "card-desc";
+      desc.textContent = product.description;
+
+      body.append(cat, title, desc);
+
+      const benefits = Array.isArray(product.benefits) ? product.benefits.filter(Boolean).slice(0, 3) : [];
+      if (benefits.length) {
+        const list = document.createElement("ul");
+        list.className = "card-benefits";
+        list.setAttribute("aria-label", "Caratteristiche");
+        benefits.forEach(function (b) {
+          const li = document.createElement("li");
+          li.textContent = b;
+          list.appendChild(li);
+        });
+        body.appendChild(list);
+      }
+
+      // Pulsante di affiliazione
+      const actions = document.createElement("div");
+      actions.className = "card-actions";
+      const check = checkAffiliateUrl(product.affiliateUrl);
+
+      if (check.ok) {
+        const link = document.createElement("a");
+        link.className = "btn btn-affiliate";
+        link.href = check.href;
+        link.target = "_blank";
+        link.rel = "sponsored nofollow noopener noreferrer";
+        link.setAttribute("aria-describedby", "affiliate-hint");
+        link.append(document.createTextNode("Verifica disponibilità"), createExternalIcon());
+        actions.appendChild(link);
+      } else {
+        // Link mancante o non valido: nessun reindirizzamento, solo un messaggio chiaro
+        const message = affiliateErrorMessage(product, check.reason);
+        const noteId = "note-" + product.id;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "btn btn-affiliate is-missing";
+        button.textContent = "Verifica disponibilità";
+        button.setAttribute("aria-describedby", noteId);
+
+        const note = document.createElement("p");
+        note.className = "card-note";
+        note.id = noteId;
+        note.hidden = true;
+        note.textContent = message;
+
+        button.addEventListener("click", function () {
+          note.hidden = false;
+          showToast(message);
+        });
+
+        actions.append(button, note);
+      }
+
+      body.appendChild(actions);
+      card.append(media, body);
+      return card;
+    }
+
+    /* ---------- Indice di ricerca e cache delle schede ---------- */
+    const searchIndex = new Map();
+    const cardCache = new Map();
+
+    function buildIndexAndCards() {
+      products.forEach(function (p) {
+        const text = [p.title, p.category, p.description].concat(p.benefits || []).join(" ");
+        searchIndex.set(p.id, normalize(text));
+        cardCache.set(p.id, createCard(p));
+      });
+    }
+
+    /* ---------- Filtri, ricerca e ordinamento combinati ---------- */
+    function getVisibleProducts() {
+      const terms = normalize(state.query).split(/\s+/).filter(Boolean);
+
+      let list = products.filter(function (p) {
+        if (state.category !== ALL_CATEGORIES && p.category !== state.category) return false;
+        if (!terms.length) return true;
+        const haystack = searchIndex.get(p.id);
+        return terms.every(function (t) { return haystack.includes(t); });
+      });
+
+      if (state.sort === "name-asc" || state.sort === "name-desc") {
+        const direction = state.sort === "name-asc" ? 1 : -1;
+        list = list.slice().sort(function (a, b) {
+          return direction * a.title.localeCompare(b.title, "it", { sensitivity: "base" });
+        });
+      }
+      return list;
+    }
+
+    function isFiltering() {
+      return state.query.trim() !== "" || state.category !== ALL_CATEGORIES;
+    }
+
+    function render() {
+      const list = getVisibleProducts();
+
+      els.grid.replaceChildren.apply(els.grid, list.map(function (p) { return cardCache.get(p.id); }));
+      els.grid.hidden = list.length === 0;
+      els.empty.hidden = list.length !== 0;
+      els.reset.hidden = !isFiltering();
+
+      const n = list.length;
+      let text;
+      if (n === 0) text = "Nessun prodotto trovato";
+      else text = n + (n === 1 ? " prodotto" : " prodotti");
+      if (n > 0 && isFiltering()) text += " su " + products.length;
+      els.count.textContent = text;
+    }
+
+    function setCategory(value) {
+      state.category = value;
+      els.categorySelect.value = value;
+      els.chips.querySelectorAll(".chip").forEach(function (chip) {
+        chip.setAttribute("aria-pressed", String(chip.dataset.category === value));
+      });
+      render();
+    }
+
+    function resetFilters() {
+      state.query = "";
+      els.search.value = "";
+      setCategory(ALL_CATEGORIES);
+      els.search.focus();
+    }
+
+    /* ---------- Controlli dei filtri (pulsanti e menu sincronizzati) ---------- */
+    function buildCategoryControls() {
+      const options = [{ value: ALL_CATEGORIES, label: "Tutte" }].concat(
+        CATEGORIES.map(function (c) { return { value: c.label, label: c.label }; })
+      );
+
+      options.forEach(function (o) {
+        const opt = document.createElement("option");
+        opt.value = o.value;
+        opt.textContent = o.label;
+        els.categorySelect.appendChild(opt);
+
+        const li = document.createElement("li");
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "chip";
+        chip.dataset.category = o.value;
+        chip.textContent = o.label;
+        chip.setAttribute("aria-pressed", String(o.value === state.category));
+        chip.addEventListener("click", function () { setCategory(o.value); });
+        li.appendChild(chip);
+        els.chips.appendChild(li);
+      });
+    }
+
+    function bindEvents() {
+      els.search.addEventListener("input", function () {
+        state.query = els.search.value;
+        render();
+      });
+      els.categorySelect.addEventListener("change", function () {
+        setCategory(els.categorySelect.value);
+      });
+      els.sortSelect.addEventListener("change", function () {
+        state.sort = els.sortSelect.value;
+        render();
+      });
+      els.reset.addEventListener("click", resetFilters);
+      els.emptyReset.addEventListener("click", resetFilters);
+    }
+
+    /* ---------- Link alle pagine informative del footer ---------- */
+    function setupInfoLinks() {
+      document.querySelectorAll("[data-config-key]").forEach(function (link) {
+        const key = link.dataset.configKey;
+        const value = String(SITE_CONFIG[key] || "").trim();
+        const isSafe = value && !/^\s*(javascript|data|vbscript):/i.test(value);
+
+        if (isSafe) {
+          link.href = value;
+          return;
+        }
+        // Pagina non ancora creata: lo diciamo chiaramente, senza fingere che esista
+        link.classList.add("is-pending");
+        const tag = document.createElement("span");
+        tag.className = "pending-tag";
+        tag.textContent = "da completare";
+        link.appendChild(tag);
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          showToast("Pagina non ancora collegata: inserisci l'URL in SITE_CONFIG." + key + ".");
+        });
+      });
+    }
+
+    /* ---------- Controlli di coerenza (visibili nella console del browser) ---------- */
+    function validateCatalog() {
+      const seen = new Set();
+      products.forEach(function (p, i) {
+        const where = "Prodotto " + (i + 1) + " (\"" + (p.id || "senza id") + "\")";
+        if (!p.id) console.warn(where + ": manca il campo id.");
+        if (seen.has(p.id)) console.warn(where + ": id duplicato, deve essere unico.");
+        seen.add(p.id);
+        if (!p.title) console.warn(where + ": manca il titolo.");
+        if (!getCategory(p.category)) console.warn(where + ": la categoria \"" + p.category + "\" non esiste in CATEGORIES.");
+
+        const check = checkAffiliateUrl(p.affiliateUrl);
+        if (!check.ok) {
+          console.warn(where + ": " + affiliateErrorMessage(p, check.reason));
+        }
+        if (String(p.asin || "").trim() && !ASIN_PATTERN.test(String(p.asin).trim())) {
+          console.warn(where + ": l'ASIN \"" + p.asin + "\" non è valido: deve avere 10 caratteri (lettere e numeri).");
+        }
+        if (String(p.imageUrl || "").trim() && !getSafeImageUrl(p.imageUrl)) {
+          console.warn(where + ": imageUrl non valido (usa un indirizzo https:// o un percorso locale).");
+        }
+        if (check.ok && !getProductImage(p)) {
+          console.warn(where + ": nessuna foto. Il link non contiene l'ASIN: compila il campo \"asin\".");
+        }
+      });
+    }
+
+    /* ---------- Avvio ---------- */
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+    validateCatalog();
+    buildIndexAndCards();
+    buildCategoryControls();
+    bindEvents();
+    setupInfoLinks();
+    render();
+  </script>
+</body>
+</html>
