@@ -290,7 +290,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 65% center;
+      object-position: center;
     }
 
     /* Velatura avorio: rende il testo leggibile sopra la foto */
@@ -424,129 +424,9 @@
       color: var(--c-muted);
     }
 
-    .toolbar {
-      display: grid;
-      gap: 18px;
-      padding: 20px;
-      background: var(--c-card);
-      border: 1px solid var(--c-line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .toolbar-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-width: 0;
-    }
-    .field label,
-    .chips-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--c-muted);
-    }
-
-    .select {
-      width: 100%;
-      min-height: 50px;
-      padding: 0 16px;
-      border: 1px solid var(--c-line-strong);
-      border-radius: var(--radius-sm);
-      background-color: var(--c-bg);
-      font-size: 1rem; /* 16px: evita lo zoom automatico su iPhone */
-      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background-color 0.2s var(--ease);
-    }
-    .select:hover { border-color: var(--c-ink); }
-    .select:focus-visible {
-      outline: none;
-      border-color: var(--c-ink);
-      background-color: var(--c-card);
-      box-shadow: 0 0 0 4px var(--c-rose);
-      border-radius: var(--radius-sm);
-    }
-
-    .select {
-      appearance: none;
-      -webkit-appearance: none;
-      padding-right: 44px;
-      cursor: pointer;
-      text-overflow: ellipsis;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233F3936' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      background-size: 16px;
-    }
-
-    .chips-group { display: grid; gap: 8px; }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .chip {
-      min-height: 42px;
-      padding: 9px 18px;
-      border: 1px solid var(--c-line-strong);
-      border-radius: 999px;
-      background: transparent;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
-    }
-    .chip:hover { background: var(--c-rose); border-color: var(--c-rose); }
-    .chip[aria-pressed="true"] {
-      background: var(--c-ink);
-      border-color: var(--c-ink);
-      color: var(--c-bg);
-    }
-
-    .results-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px 20px;
-      margin: 30px 0 18px;
-    }
-    .results-count {
-      margin: 0;
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-    }
-    .results-disclosure {
-      margin: 0;
-      font-size: 0.82rem;
-      color: var(--c-muted);
-      max-width: 62ch;
-    }
-
-    .link-button {
-      border: 0;
-      background: none;
-      padding: 6px 0;
-      font-size: 0.9rem;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      cursor: pointer;
-    }
-    .link-button:hover { color: var(--c-muted); }
-
     /* ==============================================================
        8. GRIGLIA E SCHEDE PRODOTTO
-       4 colonne su desktop ampi, 3 su schermi intermedi,
-       2 su smartphone, 1 sugli schermi molto stretti.
+       3 prodotti per fila su desktop, 2 su tablet, 1 su smartphone.
        ============================================================== */
     .product-grid {
       display: grid;
@@ -584,7 +464,11 @@
     .card-media img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* l'immagine non viene mai deformata */
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;      /* l'immagine intera, mai deformata né tagliata */
+      object-position: center;  /* sempre centrata */
+      margin: auto;
     }
 
     /* Segnaposto elegante se l'immagine manca o non si carica */
@@ -759,26 +643,6 @@
       font-size: 0.8rem;
       line-height: 1.45;
       overflow-wrap: anywhere;
-    }
-
-    /* Nessun risultato */
-    .empty-state {
-      padding: clamp(40px, 6vw, 64px) 24px;
-      text-align: center;
-      background: var(--c-card);
-      border: 1px dashed var(--c-line-strong);
-      border-radius: var(--radius-lg);
-    }
-    .empty-state h3 {
-      margin: 0 0 8px;
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: 1.6rem;
-    }
-    .empty-state p {
-      margin: 0 auto 24px;
-      max-width: 44ch;
-      color: var(--c-muted);
     }
 
     /* ==============================================================
@@ -1021,17 +885,10 @@
       section[id], footer[id] { scroll-margin-top: 16px; }
 
       .hero-actions .btn { flex: 1 1 auto; }
-      .toolbar { padding: 16px; border-radius: var(--radius-md); }
-      .chip { padding: 8px 14px; font-size: 0.85rem; min-height: 40px; }
-
       .card-media { aspect-ratio: 4 / 3; }
 
       .value { padding: 22px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-
-    @media (max-width: 420px) {
-      .toolbar-row { grid-template-columns: 1fr; }
     }
 
     /* Rispetto della preferenza "riduci movimento" */
@@ -1106,7 +963,6 @@
             </div>
             <p class="hero-note">
               <span>15 idee selezionate</span>
-              <span>5 categorie</span>
               <span>Link diretti ad Amazon.it</span>
             </p>
           </div>
@@ -1157,47 +1013,9 @@
             <p class="eyebrow">La selezione</p>
             <h2 class="section-title" id="catalog-title">Idee per prenderti cura di te</h2>
           </div>
-          <p class="section-intro">Scegli una categoria e ordina la selezione come preferisci.</p>
-        </div>
-
-        <!-- Filtri e ordinamento -->
-        <div class="toolbar" role="group" aria-label="Filtra e ordina i prodotti">
-          <div class="toolbar-row">
-            <div class="field">
-              <label for="category-select">Categoria</label>
-              <select class="select" id="category-select" aria-controls="product-grid">
-                <!-- Opzioni generate dal JavaScript a partire da CATEGORIES -->
-              </select>
-            </div>
-            <div class="field">
-              <label for="sort-select">Ordina per</label>
-              <select class="select" id="sort-select" aria-controls="product-grid">
-                <option value="recommended">Ordine consigliato</option>
-                <option value="name-asc">Nome (A–Z)</option>
-                <option value="name-desc">Nome (Z–A)</option>
-              </select>
-            </div>
-          </div>
-          <div class="chips-group">
-            <span class="chips-label" id="chips-label">Categorie rapide</span>
-            <ul class="chips" id="category-chips" aria-labelledby="chips-label">
-              <!-- Pulsanti generati dal JavaScript -->
-            </ul>
-          </div>
-        </div>
-
-        <div class="results-bar">
-          <p class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></p>
-          <button class="link-button" type="button" id="reset-filters" hidden>Mostra tutte le categorie</button>
         </div>
 
         <div class="product-grid" id="product-grid"></div>
-
-        <div class="empty-state" id="empty-state" hidden>
-          <h3>Nessun prodotto trovato</h3>
-          <p>Questa categoria non contiene ancora prodotti. Scegline un'altra o torna alla selezione completa.</p>
-          <button class="btn" type="button" id="empty-reset">Mostra tutti i prodotti</button>
-        </div>
 
         <!-- Descrizione condivisa dai pulsanti di affiliazione (lettori di schermo) -->
         <p class="visually-hidden" id="affiliate-hint">Apre la pagina del prodotto su Amazon.it in una nuova scheda. Link di affiliazione.</p>
@@ -1460,22 +1278,8 @@
        DA QUI IN POI NON È NECESSARIO MODIFICARE NULLA
        ================================================================ */
 
-    const ALL_CATEGORIES = "all";
-
-    const state = {
-      category: ALL_CATEGORIES,
-      sort: "recommended"
-    };
-
     const els = {
       grid: document.getElementById("product-grid"),
-      empty: document.getElementById("empty-state"),
-      count: document.getElementById("results-count"),
-      categorySelect: document.getElementById("category-select"),
-      sortSelect: document.getElementById("sort-select"),
-      chips: document.getElementById("category-chips"),
-      reset: document.getElementById("reset-filters"),
-      emptyReset: document.getElementById("empty-reset"),
       toast: document.getElementById("toast")
     };
 
@@ -1698,99 +1502,9 @@
       return card;
     }
 
-    /* ---------- Cache delle schede ---------- */
-    const cardCache = new Map();
-
-    function buildCards() {
-      products.forEach(function (p) {
-        cardCache.set(p.id, createCard(p));
-      });
-    }
-
-    /* ---------- Filtro per categoria e ordinamento combinati ---------- */
-    function getVisibleProducts() {
-      let list = products.filter(function (p) {
-        return state.category === ALL_CATEGORIES || p.category === state.category;
-      });
-
-      if (state.sort === "name-asc" || state.sort === "name-desc") {
-        const direction = state.sort === "name-asc" ? 1 : -1;
-        list = list.slice().sort(function (a, b) {
-          return direction * a.title.localeCompare(b.title, "it", { sensitivity: "base" });
-        });
-      }
-      return list;
-    }
-
-    function isFiltering() {
-      return state.category !== ALL_CATEGORIES;
-    }
-
-    function render() {
-      const list = getVisibleProducts();
-
-      els.grid.replaceChildren.apply(els.grid, list.map(function (p) { return cardCache.get(p.id); }));
-      els.grid.hidden = list.length === 0;
-      els.empty.hidden = list.length !== 0;
-      els.reset.hidden = !isFiltering();
-
-      const n = list.length;
-      let text;
-      if (n === 0) text = "Nessun prodotto trovato";
-      else text = n + (n === 1 ? " prodotto" : " prodotti");
-      if (n > 0 && isFiltering()) text += " su " + products.length;
-      els.count.textContent = text;
-    }
-
-    function setCategory(value) {
-      state.category = value;
-      els.categorySelect.value = value;
-      els.chips.querySelectorAll(".chip").forEach(function (chip) {
-        chip.setAttribute("aria-pressed", String(chip.dataset.category === value));
-      });
-      render();
-    }
-
-    function resetFilters() {
-      setCategory(ALL_CATEGORIES);
-      els.categorySelect.focus();
-    }
-
-    /* ---------- Controlli dei filtri (pulsanti e menu sincronizzati) ---------- */
-    function buildCategoryControls() {
-      const options = [{ value: ALL_CATEGORIES, label: "Tutte" }].concat(
-        CATEGORIES.map(function (c) { return { value: c.label, label: c.label }; })
-      );
-
-      options.forEach(function (o) {
-        const opt = document.createElement("option");
-        opt.value = o.value;
-        opt.textContent = o.label;
-        els.categorySelect.appendChild(opt);
-
-        const li = document.createElement("li");
-        const chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "chip";
-        chip.dataset.category = o.value;
-        chip.textContent = o.label;
-        chip.setAttribute("aria-pressed", String(o.value === state.category));
-        chip.addEventListener("click", function () { setCategory(o.value); });
-        li.appendChild(chip);
-        els.chips.appendChild(li);
-      });
-    }
-
-    function bindEvents() {
-      els.categorySelect.addEventListener("change", function () {
-        setCategory(els.categorySelect.value);
-      });
-      els.sortSelect.addEventListener("change", function () {
-        state.sort = els.sortSelect.value;
-        render();
-      });
-      els.reset.addEventListener("click", resetFilters);
-      els.emptyReset.addEventListener("click", resetFilters);
+    /* ---------- Griglia: tutti i prodotti, nell'ordine dell'array ---------- */
+    function renderProducts() {
+      els.grid.replaceChildren.apply(els.grid, products.map(createCard));
     }
 
     /* ---------- Link alle pagine informative del footer ---------- */
@@ -1841,11 +1555,8 @@
     /* ---------- Avvio ---------- */
     document.getElementById("year").textContent = String(new Date().getFullYear());
     validateCatalog();
-    buildCards();
-    buildCategoryControls();
-    bindEvents();
+    renderProducts();
     setupInfoLinks();
-    render();
   </script>
 </body>
 </html>
