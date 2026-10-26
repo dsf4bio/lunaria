@@ -584,6 +584,87 @@
       object-position: center;  /* sempre perfettamente centrata */
     }
 
+    /* Galleria scorrevole: fino a 3 foto per prodotto */
+    .gallery {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+    }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery:focus-visible { outline-offset: -4px; }
+
+    .gallery-item {
+      position: relative;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-top: -19px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid var(--c-line-strong);
+      background: rgba(255, 253, 250, 0.92);
+      color: var(--c-ink);
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s var(--ease), background-color 0.2s var(--ease);
+    }
+    .gallery-btn svg { width: 16px; height: 16px; }
+    .gallery-prev { left: 10px; }
+    .gallery-next { right: 10px; }
+    .card:hover .gallery-btn,
+    .gallery-btn:focus-visible { opacity: 1; }
+    .gallery-btn:hover { background: var(--c-card); }
+    .gallery-btn:disabled { opacity: 0 !important; pointer-events: none; }
+    .gallery-btn[hidden] { display: none; }
+
+    .gallery-dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 12px;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+    .gallery-dots[hidden] { display: none; }
+    .gallery-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(63, 57, 54, 0.22);
+      transition: width 0.25s var(--ease), background-color 0.25s var(--ease);
+    }
+    .gallery-dots span.is-active { width: 18px; background: var(--c-ink); }
+
+    /* Su smartphone e tablet si scorre con il dito: frecce nascoste */
+    @media (hover: none) {
+      .gallery-btn { display: none; }
+    }
+
     /* Segnaposto elegante se l'immagine manca o non si carica */
     .ph {
       position: absolute;
@@ -1217,9 +1298,10 @@
                         il resto, con i benefici, si apre con "Scopri di più".
        - benefits     → 2 o 3 caratteristiche, tra virgolette e separate da virgole
        - affiliateUrl → il TUO link affiliato (qualsiasi link https://, anche brevi come https://link.amazon/...)
-       - imageUrl     → indirizzo della foto del prodotto. Sulla pagina Amazon: clic destro
-                        sulla foto principale → "Copia indirizzo immagine" e incollalo qui.
-                        Deve iniziare con https://m.media-amazon.com/images/I/...
+       - images       → fino a 3 foto del prodotto, scorrevoli nella scheda. La prima è la
+                        principale (usata anche nel carosello in alto). Sulla pagina Amazon:
+                        clic destro su una foto → "Copia indirizzo immagine" e incollalo tra
+                        le virgolette. Lascia "" le foto che non hai: vengono ignorate.
        I dati qui sotto sono ESEMPI: sostituiscili con i prodotti reali
        e verifica che descrizione e benefici corrispondano all'articolo scelto.
        L'ordine dell'array è l'"Ordine consigliato".
@@ -1232,7 +1314,11 @@
         description: "Una fascia riscaldante da indossare in vita, pensata per regalarti una piacevole sensazione di calore nei giorni del ciclo.",
         benefits: ["Sensazione di calore avvolgente", "Fascia regolabile in vita", "Da usare a casa o in ufficio"],
         affiliateUrl: "https://link.amazon/B05lbXtVl",
-        imageUrl: "https://m.media-amazon.com/images/I/61pnjnS3MbL._AC_SL500_.jpg"
+        images: [
+          "https://m.media-amazon.com/images/I/61pnjnS3MbL._AC_SL500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/41HTxmz8jGL._AC_SL500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/51CFtMeERKL._AC_SL500_.jpg"    // foto 3
+        ]
       },
       {
         id: "rullo-viso",
@@ -1241,7 +1327,11 @@
         description: "Un piccolo strumento da passare delicatamente sul viso, per trasformare la skincare in un momento di cura e lentezza.",
         benefits: ["Gesto rilassante nella routine", "Si abbina a sieri e creme", "Facile da pulire e riporre"],
         affiliateUrl: "https://link.amazon/B07Mkps8h",
-        imageUrl: "https://m.media-amazon.com/images/I/71LT6xD5oYL._AC_SL500_.jpg"
+        images: [
+          "https://m.media-amazon.com/images/I/71LT6xD5oYL._AC_SL500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/41hCUCl6qlL._AC_SL500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/41Sp7JWzrpL._AC_SL500_.jpg"    // foto 3
+        ]
       },
       {
         id: "cuscino-ergonomico",
@@ -1250,7 +1340,11 @@
         description: "Una forma pensata per accompagnare collo e spalle durante il riposo e aiutarti a trovare una posizione più confortevole.",
         benefits: ["Sostegno per collo e spalle", "Forma studiata per il riposo", "Da scegliere in base a come dormi"],
         affiliateUrl: "https://link.amazon/B06109Hu2",
-        imageUrl: "https://m.media-amazon.com/images/I/718ZL7ApAqL._AC_SL1500_.jpg"
+        images: [
+          "https://m.media-amazon.com/images/I/718ZL7ApAqL._AC_SL500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/412d9f6iC1L._AC_SL500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/41n54KbIIZL._AC_SL500_.jpg"    // foto 3
+        ]
       },
       {
         id: "spazzola-districante",
@@ -1259,7 +1353,11 @@
         description: "Setole flessibili che scorrono tra i nodi con delicatezza, per una spazzolatura più piacevole ogni giorno.",
         benefits: ["Setole flessibili", "Gesto delicato sui nodi", "Formato comodo da borsa"],
         affiliateUrl: "https://link.amazon/B0cSH8yDE",
-        imageUrl: "https://m.media-amazon.com/images/I/815+fKxC7YL._AC_SL1500_.jpg"
+        images: [
+          "https://m.media-amazon.com/images/I/815+fKxC7YL._AC_SL500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/41biHUtDn8L._AC_SL500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/41C3zOQZCIL._AC_SL500_.jpg"    // foto 3
+        ]
       },
       {
         id: "massaggiatore-corpo",
@@ -1268,7 +1366,11 @@
         description: "Per concederti qualche minuto di massaggio rilassante su spalle, schiena e gambe dopo una lunga giornata.",
         benefits: ["Un momento di relax a fine giornata", "Per spalle, schiena e gambe", "Diverse intensità, secondo il modello"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "mascherina-sonno",
@@ -1277,7 +1379,11 @@
         description: "Morbida e leggera, scherma la luce per accompagnarti nel riposo, a casa come in viaggio.",
         benefits: ["Scherma la luce", "Tessuto morbido sulla pelle", "Perfetta anche in viaggio"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "maschere-viso",
@@ -1286,7 +1392,11 @@
         description: "Un piccolo rituale di bellezza da concederti la sera o nel weekend, con formule diverse in base alle esigenze della pelle.",
         benefits: ["Rituale di bellezza veloce", "Formule per diverse esigenze", "Monouso e pratiche"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "borsa-acqua-calda",
@@ -1295,7 +1405,11 @@
         description: "Un classico intramontabile per le serate fredde e per i giorni in cui serve un po' di calore in più.",
         benefits: ["Fodera morbida al tatto", "Calore piacevole sul divano o a letto", "Da riempire seguendo le istruzioni"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "spazzola-cuoio-capelluto",
@@ -1304,7 +1418,11 @@
         description: "Punte morbide per un massaggio rilassante durante lo shampoo o a capelli asciutti.",
         benefits: ["Massaggio delicato e rilassante", "Utilizzabile anche sotto la doccia", "Impugnatura comoda"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "cuscino-gambe",
@@ -1313,7 +1431,11 @@
         description: "Da posizionare tra le ginocchia quando dormi su un fianco, per trovare una posizione più comoda.",
         benefits: ["Pensato per chi dorme sul fianco", "Forma che segue le gambe", "Utile anche per il relax sul divano"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "impacco-caldo-freddo",
@@ -1322,7 +1444,11 @@
         description: "Un impacco in gel da scaldare o raffreddare secondo le istruzioni, per una piacevole sensazione di caldo o di fresco.",
         benefits: ["Utilizzabile caldo o freddo", "Riutilizzabile più volte", "Formato flessibile"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "organizer-skincare",
@@ -1331,7 +1457,11 @@
         description: "Riunisce creme, sieri e trucchi in un unico spazio, per una routine più ordinata e piacevole da seguire.",
         benefits: ["Tutto a portata di mano", "Scomparti di diverse misure", "Ideale per bagno o toeletta"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "accessori-capelli",
@@ -1340,7 +1470,11 @@
         description: "Accessori morbidi ed eleganti per raccogliere i capelli con delicatezza, di giorno o per la notte.",
         benefits: ["Tessuto morbido", "Stile semplice ed elegante", "Più colori in un unico set"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "rullo-schiuma",
@@ -1349,7 +1483,11 @@
         description: "Un accessorio versatile per accompagnare lo stretching e i momenti di movimento dolce a casa.",
         benefits: ["Per stretching e movimento dolce", "Leggero e facile da riporre", "Adatto alla pratica a casa"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       },
       {
         id: "cuscino-lombare",
@@ -1358,7 +1496,11 @@
         description: "Un supporto da sistemare sulla sedia o in auto, per rendere più confortevoli le ore passate seduta.",
         benefits: ["Più comfort sulla sedia", "In ufficio, a casa o in auto", "Facile da spostare"],
         affiliateUrl: "",
-        imageUrl: ""
+        images: [
+          "",   // foto 1 (principale)
+          "",   // foto 2
+          ""    // foto 3
+        ]
       }
     ];
 
@@ -1489,6 +1631,160 @@
       return svg;
     }
 
+    /* ---------- Foto del prodotto (fino a 3) ---------- */
+    const MAX_IMAGES = 3;
+
+    // Restituisce gli indirizzi validi, senza doppioni (accetta anche il vecchio campo imageUrl)
+    function getProductImages(product) {
+      const list = (Array.isArray(product.images) ? product.images : []).concat(product.imageUrl || []);
+      const seen = new Set();
+      return list.map(getSafeImageUrl).filter(function (url) {
+        if (!url || seen.has(url)) return false;
+        seen.add(url);
+        return true;
+      }).slice(0, MAX_IMAGES);
+    }
+
+    function createGalleryButton(direction) {
+      const ns = "http://www.w3.org/2000/svg";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "gallery-btn gallery-" + direction;
+      btn.setAttribute("aria-label", direction === "prev" ? "Foto precedente" : "Foto successiva");
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("fill", "none");
+      svg.setAttribute("stroke", "currentColor");
+      svg.setAttribute("stroke-width", "1.8");
+      svg.setAttribute("stroke-linecap", "round");
+      svg.setAttribute("stroke-linejoin", "round");
+      svg.setAttribute("aria-hidden", "true");
+      const path = document.createElementNS(ns, "path");
+      path.setAttribute("d", direction === "prev" ? "M15 6l-6 6 6 6" : "M9 6l6 6-6 6");
+      svg.appendChild(path);
+      btn.appendChild(svg);
+      return btn;
+    }
+
+    // Galleria orizzontale: scorrimento con il dito, con le frecce o con la tastiera
+    function createGallery(product, images, media) {
+      const fragment = document.createDocumentFragment();
+
+      const gallery = document.createElement("div");
+      gallery.className = "gallery";
+      gallery.tabIndex = 0;
+      gallery.setAttribute("role", "group");
+      gallery.setAttribute("aria-roledescription", "galleria");
+      gallery.setAttribute("aria-label", "Foto di " + product.title);
+
+      const prev = createGalleryButton("prev");
+      const next = createGalleryButton("next");
+      const dots = document.createElement("div");
+      dots.className = "gallery-dots";
+      dots.setAttribute("aria-hidden", "true");
+
+      function items() { return gallery.querySelectorAll(".gallery-item"); }
+      function currentIndex() {
+        return gallery.clientWidth ? Math.round(gallery.scrollLeft / gallery.clientWidth) : 0;
+      }
+
+      function update() {
+        const count = items().length;
+        const index = Math.min(currentIndex(), count - 1);
+        const multiple = count > 1;
+        prev.hidden = next.hidden = dots.hidden = !multiple;
+        prev.disabled = index <= 0;
+        next.disabled = index >= count - 1;
+        if (dots.children.length !== count) {
+          dots.replaceChildren();
+          for (let i = 0; i < count; i++) dots.appendChild(document.createElement("span"));
+        }
+        Array.prototype.forEach.call(dots.children, function (dot, i) {
+          dot.classList.toggle("is-active", i === index);
+        });
+      }
+
+      // Animazione gestita dal codice: identica su tutti i browser
+      let animating = false;
+      let animationId = 0;
+      let targetIndex = 0;
+      let finishCurrent = null;
+      // Durante un'animazione, le frecce partono dalla foto di destinazione: ogni clic conta
+      function baseIndex() { return animating ? targetIndex : currentIndex(); }
+      function goTo(index) {
+        const list = items();
+        if (!list.length) return;
+        if (animating && finishCurrent) finishCurrent();
+        index = Math.max(0, Math.min(list.length - 1, index));
+        const from = gallery.scrollLeft;
+        const to = list[index].offsetLeft;
+        targetIndex = index;
+        if (from === to) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          gallery.scrollLeft = to;
+          return;
+        }
+        const id = ++animationId;
+        animating = true;
+        finishCurrent = finish;
+        gallery.style.scrollSnapType = "none"; // evita che l'aggancio interrompa l'animazione
+        const duration = 380;
+        const startTime = performance.now();
+        function finish() {
+          if (id !== animationId || !animating) return;
+          gallery.scrollLeft = to;
+          gallery.style.scrollSnapType = "";
+          animating = false;
+          update();
+        }
+        function step(now) {
+          if (id !== animationId || !animating) return;
+          const t = Math.min(1, (now - startTime) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          gallery.scrollLeft = from + (to - from) * eased;
+          if (t < 1) requestAnimationFrame(step);
+          else finish();
+        }
+        requestAnimationFrame(step);
+        // Sicurezza: se il browser sospende l'animazione, la foto arriva comunque a destinazione
+        setTimeout(finish, duration + 120);
+      }
+
+      images.forEach(function (src, i) {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+        const img = document.createElement("img");
+        img.alt = images.length > 1 ? product.title + " — foto " + (i + 1) + " di " + images.length : product.title;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.referrerPolicy = "no-referrer";
+        img.width = 600;
+        img.height = 600;
+        img.addEventListener("error", function () {
+          // Foto non raggiungibile: si toglie; se non ne resta nessuna, compare il segnaposto
+          item.remove();
+          if (!items().length) {
+            media.replaceChildren(createPlaceholder(product));
+          } else {
+            update();
+          }
+        }, { once: true });
+        img.src = src;
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+
+      prev.addEventListener("click", function () { goTo(baseIndex() - 1); });
+      next.addEventListener("click", function () { goTo(baseIndex() + 1); });
+
+      // Aggiorna pallini e frecce mentre si scorre (anche con il dito)
+      gallery.addEventListener("scroll", update, { passive: true });
+
+      update();
+      fragment.append(gallery, prev, next, dots);
+      return fragment;
+    }
+
     function createCard(product) {
       const titleId = "title-" + product.id;
       const card = document.createElement("article");
@@ -1498,23 +1794,12 @@
       const category = getCategory(product.category);
       if (category) card.style.setProperty("--tint", category.tint);
 
-      // Immagine (o segnaposto se manca / non si carica)
+      // Foto scorrevoli (o segnaposto se mancano / non si caricano)
       const media = document.createElement("div");
       media.className = "card-media";
-      const imageSrc = getSafeImageUrl(product.imageUrl);
-      if (imageSrc) {
-        const img = document.createElement("img");
-        img.alt = product.title;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.referrerPolicy = "no-referrer";
-        img.width = 600;
-        img.height = 600;
-        img.addEventListener("error", function () {
-          img.replaceWith(createPlaceholder(product));
-        }, { once: true });
-        img.src = imageSrc;
-        media.appendChild(img);
+      const images = getProductImages(product);
+      if (images.length) {
+        media.appendChild(createGallery(product, images, media));
       } else {
         media.appendChild(createPlaceholder(product));
       }
@@ -1639,7 +1924,7 @@
       img.addEventListener("error", function () {
         img.replaceWith(createPlaceholder(product));
       }, { once: true });
-      img.src = getSafeImageUrl(product.imageUrl);
+      img.src = getProductImages(product)[0];
       media.appendChild(img);
 
       const body = document.createElement("div");
@@ -1675,7 +1960,7 @@
 
       // Solo i prodotti con link affiliato valido e foto
       const items = products.filter(function (p) {
-        return checkAffiliateUrl(p.affiliateUrl).ok && getSafeImageUrl(p.imageUrl);
+        return checkAffiliateUrl(p.affiliateUrl).ok && getProductImages(p).length > 0;
       });
 
       if (!items.length) {
@@ -1817,8 +2102,13 @@
         if (!check.ok) {
           console.warn(where + ": " + affiliateErrorMessage(p, check.reason));
         }
-        if (String(p.imageUrl || "").trim() && !getSafeImageUrl(p.imageUrl)) {
-          console.warn(where + ": imageUrl non valido (usa un indirizzo https:// o un percorso locale).");
+        (Array.isArray(p.images) ? p.images : []).forEach(function (url, k) {
+          if (String(url || "").trim() && !getSafeImageUrl(url)) {
+            console.warn(where + ": la foto " + (k + 1) + " non è un indirizzo valido (usa https:// o un percorso locale).");
+          }
+        });
+        if (Array.isArray(p.images) && p.images.length > MAX_IMAGES) {
+          console.warn(where + ": ci sono più di " + MAX_IMAGES + " foto, verranno mostrate solo le prime " + MAX_IMAGES + ".");
         }
       });
     }
