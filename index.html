@@ -6,6 +6,7 @@
   <title>Lunaria — Una selezione curata per il tuo benessere</title>
   <meta name="description" content="Lunaria è una selezione curata di idee per la cura personale, la bellezza, il comfort e il relax, con collegamenti diretti alle schede prodotto su Amazon.it.">
   <meta name="theme-color" content="#F7F3EE">
+  <meta name="color-scheme" content="light only">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23EAD6D1'/%3E%3Cpath d='M40 14a20 20 0 1 0 10 30 16 16 0 1 1-10-30z' fill='%233F3936'/%3E%3C/svg%3E">
 
   <!--
@@ -271,45 +272,153 @@
       padding-block: clamp(16px, 3vw, 32px) clamp(56px, 8vw, 104px);
     }
 
-    /* Banner con grande immagine di sfondo */
+    /* Banner: testo a sinistra, carosello dei prodotti a destra */
     .hero-banner {
       position: relative;
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       align-items: center;
-      min-height: clamp(520px, 80vh, 780px);
+      gap: clamp(28px, 4vw, 64px);
+      min-height: clamp(540px, 78vh, 760px);
+      padding: clamp(28px, 5vw, 72px);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      /* Colori di riserva, visibili se l'immagine non si carica */
-      background: linear-gradient(135deg, var(--c-rose) 0%, #F1E4E0 50%, var(--c-sage) 100%);
+      background: linear-gradient(135deg, var(--c-rose) 0%, #F1E4E0 48%, var(--c-sage) 100%);
       box-shadow: var(--shadow-soft);
     }
-
-    .hero-img {
+    .hero-banner::before {
+      content: "";
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      width: 520px;
+      height: 520px;
+      right: -140px;
+      top: -160px;
+      border-radius: 50%;
+      border: 1px solid rgba(63, 57, 54, 0.12);
+      pointer-events: none;
     }
-
-    /* Velatura avorio: rende il testo leggibile sopra la foto */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg,
-        rgba(247, 243, 238, 0.94) 0%,
-        rgba(247, 243, 238, 0.82) 34%,
-        rgba(247, 243, 238, 0.25) 62%,
-        rgba(247, 243, 238, 0) 80%);
-    }
+    .hero-banner.no-carousel { grid-template-columns: minmax(0, 1fr); }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 640px;
-      padding: clamp(32px, 6vw, 80px);
+      max-width: 600px;
     }
+
+    /* ---------- Carosello ---------- */
+    .carousel {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+      justify-self: center;
+    }
+
+    .carousel-viewport {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--c-card);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.7s var(--ease);
+      touch-action: pan-y;
+      will-change: transform;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide-media {
+      position: relative;
+      height: 0;
+      padding-bottom: 92%;
+      overflow: hidden;
+      background: #FFFFFF;
+    }
+    .slide-media img { padding: 26px; }
+
+    .slide-body {
+      display: grid;
+      gap: 12px;
+      padding: 18px 22px 22px;
+      border-top: 1px solid var(--c-line);
+    }
+    .slide-cat {
+      margin: 0;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .slide-title {
+      margin: -6px 0 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .slide .btn { width: 100%; min-height: 46px; padding: 11px 18px; font-size: 0.92rem; }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .carousel-btn {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--c-line-strong);
+      background: rgba(255, 253, 250, 0.75);
+      color: var(--c-ink);
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .carousel-btn:hover { background: var(--c-card); border-color: var(--c-ink); }
+    .carousel-btn svg { width: 18px; height: 18px; }
+    .carousel-btn svg[hidden] { display: none; }
+
+    .carousel-dots {
+      display: flex;
+      gap: 2px;
+      list-style: none;
+      margin: 0 6px;
+      padding: 0;
+    }
+    .carousel-dot {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+    .carousel-dot::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(63, 57, 54, 0.25);
+      transition: width 0.3s var(--ease), background-color 0.3s var(--ease);
+    }
+    .carousel-dot[aria-current="true"]::before { width: 22px; background: var(--c-ink); }
 
     .hero h1 {
       font-family: var(--font-serif);
@@ -452,23 +561,27 @@
       box-shadow: var(--shadow-hover);
     }
 
+    /* Riquadro immagine: altezza fissata con padding-bottom e foto in posizione
+       assoluta. Funziona in modo identico su tutti i browser, Safari/iPhone compresi. */
     .card-media {
       position: relative;
-      aspect-ratio: 1 / 1;
-      display: grid;
-      place-items: center;
-      padding: 18px;
+      height: 0;
+      padding-bottom: 100%;     /* quadrato */
+      overflow: hidden;
       background: #FFFFFF;
       border-bottom: 1px solid var(--c-line);
     }
-    .card-media img {
+    .card-media img,
+    .slide-media img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;      /* l'immagine intera, mai deformata né tagliata */
-      object-position: center;  /* sempre centrata */
-      margin: auto;
+      padding: 18px;
+      box-sizing: border-box;
+      object-fit: contain;      /* foto intera, mai deformata né tagliata */
+      object-position: center;  /* sempre perfettamente centrata */
     }
 
     /* Segnaposto elegante se l'immagine manca o non si carica */
@@ -849,21 +962,16 @@
       .footer-brand { grid-column: 1 / -1; }
     }
 
-    /* Hero su tablet e smartphone: foto sopra, testo sotto */
+    /* Hero su tablet e smartphone: carosello sopra, testo sotto */
     @media (max-width: 900px) {
       .hero-banner {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: minmax(0, 1fr);
         min-height: 0;
-        background: var(--c-card);
+        gap: 28px;
+        padding: 22px 18px 30px;
       }
-      .hero-img {
-        position: relative;
-        height: auto;
-        aspect-ratio: 4 / 3;
-      }
-      .hero-overlay { display: none; }
-      .hero-content { padding: 26px 22px 30px; }
+      .carousel { order: -1; max-width: 420px; }
+      .hero-content { max-width: none; padding-inline: 4px; }
     }
 
     /* Smartphone: 1 prodotto per fila */
@@ -885,7 +993,7 @@
       section[id], footer[id] { scroll-margin-top: 16px; }
 
       .hero-actions .btn { flex: 1 1 auto; }
-      .card-media { aspect-ratio: 4 / 3; }
+      .card-media { padding-bottom: 80%; }
 
       .value { padding: 22px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -934,22 +1042,6 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <div class="hero-banner">
-          <!-- ✏️ IMMAGINE DELL'HERO: per cambiarla sostituisci l'indirizzo in src.
-               Foto di Unsplash (licenza gratuita, uso commerciale consentito).
-               Per la massima affidabilità puoi scaricarla, metterla nella cartella
-               del sito (es. img/hero.jpg) e scrivere src="img/hero.jpg". -->
-          <img class="hero-img"
-               src="https://images.unsplash.com/photo-1461468611824-46457c0e11fd?w=2000&q=75&auto=format&fit=crop"
-               srcset="https://images.unsplash.com/photo-1461468611824-46457c0e11fd?w=900&q=75&auto=format&fit=crop 900w,
-                       https://images.unsplash.com/photo-1461468611824-46457c0e11fd?w=1400&q=75&auto=format&fit=crop 1400w,
-                       https://images.unsplash.com/photo-1461468611824-46457c0e11fd?w=2000&q=75&auto=format&fit=crop 2000w"
-               sizes="(max-width: 1240px) 100vw, 1240px"
-               alt="Una donna osserva il mare nella luce calda del mattino"
-               width="2000" height="1333"
-               fetchpriority="high"
-               onerror="this.remove()">
-          <div class="hero-overlay" aria-hidden="true"></div>
-
           <div class="hero-content">
             <p class="eyebrow">Cura personale · Comfort · Relax</p>
             <h1 id="hero-title">Il tuo benessere, <em>ogni giorno.</em></h1>
@@ -965,6 +1057,26 @@
               <span>15 idee selezionate</span>
               <span>Link diretti ad Amazon.it</span>
             </p>
+          </div>
+
+          <!-- Carosello: si riempie da solo con i prodotti che hanno link e foto -->
+          <div class="carousel" id="hero-carousel" role="region" aria-roledescription="carosello" aria-label="Prodotti in evidenza">
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="carousel-track" aria-live="off"></div>
+            </div>
+            <div class="carousel-controls" id="carousel-controls">
+              <button class="carousel-btn" type="button" id="carousel-prev" aria-label="Prodotto precedente">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <ul class="carousel-dots" id="carousel-dots" aria-label="Scegli il prodotto"></ul>
+              <button class="carousel-btn" type="button" id="carousel-next" aria-label="Prodotto successivo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <button class="carousel-btn" type="button" id="carousel-pause" aria-label="Metti in pausa lo scorrimento">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon="pause"><rect x="7" y="6" width="3.2" height="12" rx="1"/><rect x="13.8" y="6" width="3.2" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-icon="play" hidden><path d="M8 6.5v11a1 1 0 0 0 1.5.86l9-5.5a1 1 0 0 0 0-1.72l-9-5.5A1 1 0 0 0 8 6.5z"/></svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1507,6 +1619,165 @@
       els.grid.replaceChildren.apply(els.grid, products.map(createCard));
     }
 
+    /* ---------- Carosello dei prodotti nell'hero ---------- */
+    // ✏️ Tempo tra un prodotto e l'altro, in millisecondi (2500 = 2,5 secondi)
+    const CAROUSEL_INTERVAL = 2500;
+
+    function createSlide(product, position, total) {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.setAttribute("role", "group");
+      slide.setAttribute("aria-roledescription", "prodotto");
+      slide.setAttribute("aria-label", position + " di " + total + ": " + product.title);
+
+      const media = document.createElement("div");
+      media.className = "slide-media";
+      const img = document.createElement("img");
+      img.alt = product.title;
+      img.decoding = "async";
+      img.referrerPolicy = "no-referrer";
+      img.addEventListener("error", function () {
+        img.replaceWith(createPlaceholder(product));
+      }, { once: true });
+      img.src = getSafeImageUrl(product.imageUrl);
+      media.appendChild(img);
+
+      const body = document.createElement("div");
+      body.className = "slide-body";
+
+      const cat = document.createElement("p");
+      cat.className = "slide-cat";
+      cat.textContent = product.category;
+
+      const title = document.createElement("p");
+      title.className = "slide-title";
+      title.textContent = product.title;
+
+      const link = document.createElement("a");
+      link.className = "btn";
+      link.href = checkAffiliateUrl(product.affiliateUrl).href;
+      link.target = "_blank";
+      link.rel = "sponsored nofollow noopener noreferrer";
+      link.setAttribute("aria-describedby", "affiliate-hint");
+      link.append(document.createTextNode("Verifica disponibilità"), createExternalIcon());
+
+      body.append(cat, title, link);
+      slide.append(media, body);
+      return slide;
+    }
+
+    function setupHeroCarousel() {
+      const root = document.getElementById("hero-carousel");
+      const track = document.getElementById("carousel-track");
+      const dotsList = document.getElementById("carousel-dots");
+      const controls = document.getElementById("carousel-controls");
+      const pauseBtn = document.getElementById("carousel-pause");
+
+      // Solo i prodotti con link affiliato valido e foto
+      const items = products.filter(function (p) {
+        return checkAffiliateUrl(p.affiliateUrl).ok && getSafeImageUrl(p.imageUrl);
+      });
+
+      if (!items.length) {
+        root.hidden = true;
+        root.parentElement.classList.add("no-carousel");
+        return;
+      }
+
+      const slides = items.map(function (p, i) { return createSlide(p, i + 1, items.length); });
+      track.replaceChildren.apply(track, slides);
+
+      const dots = items.map(function (p, i) {
+        const li = document.createElement("li");
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel-dot";
+        dot.setAttribute("aria-label", "Mostra " + p.title);
+        dot.addEventListener("click", function () { goTo(i); restart(); });
+        li.appendChild(dot);
+        dotsList.appendChild(li);
+        return dot;
+      });
+
+      let index = 0;
+      let timer = null;
+      let pausedByUser = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let pausedByHover = false;
+
+      function goTo(i) {
+        index = (i + items.length) % items.length;
+        track.style.transform = "translate3d(" + (-index * 100) + "%, 0, 0)";
+        slides.forEach(function (slide, k) {
+          const active = k === index;
+          slide.setAttribute("aria-hidden", String(!active));
+          slide.querySelectorAll("a").forEach(function (a) { a.tabIndex = active ? 0 : -1; });
+        });
+        dots.forEach(function (dot, k) { dot.setAttribute("aria-current", String(k === index)); });
+      }
+
+      function stop() {
+        clearInterval(timer);
+        timer = null;
+        track.setAttribute("aria-live", "polite");
+      }
+
+      function start() {
+        stop();
+        if (items.length < 2 || pausedByUser || pausedByHover || document.hidden) return;
+        track.setAttribute("aria-live", "off");
+        timer = setInterval(function () { goTo(index + 1); }, CAROUSEL_INTERVAL);
+      }
+
+      function restart() { if (timer) start(); }
+
+      function updatePauseButton() {
+        pauseBtn.setAttribute("aria-label", pausedByUser ? "Riprendi lo scorrimento" : "Metti in pausa lo scorrimento");
+        // Le icone SVG si nascondono con l'attributo "hidden" (non con la proprietà .hidden)
+        pauseBtn.querySelector('[data-icon="pause"]').toggleAttribute("hidden", pausedByUser);
+        pauseBtn.querySelector('[data-icon="play"]').toggleAttribute("hidden", !pausedByUser);
+      }
+
+      document.getElementById("carousel-prev").addEventListener("click", function () { goTo(index - 1); restart(); });
+      document.getElementById("carousel-next").addEventListener("click", function () { goTo(index + 1); restart(); });
+      pauseBtn.addEventListener("click", function () {
+        pausedByUser = !pausedByUser;
+        updatePauseButton();
+        start();
+      });
+
+      // Pausa mentre il mouse o il focus della tastiera sono sul carosello
+      root.addEventListener("mouseenter", function () { pausedByHover = true; start(); });
+      root.addEventListener("mouseleave", function () { pausedByHover = false; start(); });
+      root.addEventListener("focusin", function () { pausedByHover = true; start(); });
+      root.addEventListener("focusout", function (e) {
+        if (!root.contains(e.relatedTarget)) { pausedByHover = false; start(); }
+      });
+      document.addEventListener("visibilitychange", start);
+
+      // Scorrimento con il dito su smartphone e tablet
+      let startX = null;
+      let startY = null;
+      track.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      }, { passive: true });
+      track.addEventListener("touchend", function (e) {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          goTo(index + (dx < 0 ? 1 : -1));
+          start();
+        }
+        startX = null;
+      }, { passive: true });
+
+      if (items.length < 2) controls.hidden = true;
+      updatePauseButton();
+      goTo(0);
+      start();
+    }
+
     /* ---------- Link alle pagine informative del footer ---------- */
     function setupInfoLinks() {
       document.querySelectorAll("[data-config-key]").forEach(function (link) {
@@ -1556,6 +1827,7 @@
     document.getElementById("year").textContent = String(new Date().getFullYear());
     validateCatalog();
     renderProducts();
+    setupHeroCarousel();
     setupInfoLinks();
   </script>
 </body>
