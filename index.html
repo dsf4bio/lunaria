@@ -983,14 +983,6 @@
       font-size: 0.95rem;
     }
     .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .footer-links a.is-pending { color: #C3B9B1; }
-    .pending-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      padding: 2px 8px;
-      border: 1px dashed rgba(237, 230, 223, 0.4);
-      border-radius: 999px;
-    }
     .site-footer :focus-visible { outline-color: var(--c-bg); }
 
     .footer-bottom {
@@ -1027,6 +1019,209 @@
       pointer-events: none;
     }
     .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ==============================================================
+       PRIVACY E COOKIE: finestre popup e banner
+       ============================================================== */
+    html.dialog-open { overflow: hidden; }
+
+    .policy-dialog {
+      width: min(720px, calc(100% - 32px));
+      max-height: min(88vh, 900px);
+      padding: 0;
+      border: 0;
+      border-radius: var(--radius-lg);
+      background: var(--c-card);
+      color: var(--c-ink);
+      box-shadow: 0 30px 80px -20px rgba(63, 57, 54, 0.45);
+      overflow: hidden;
+    }
+    .policy-dialog[open] { display: flex; flex-direction: column; }
+    .policy-dialog::backdrop {
+      background: rgba(63, 57, 54, 0.45);
+      -webkit-backdrop-filter: blur(3px);
+      backdrop-filter: blur(3px);
+    }
+
+    .policy-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--c-line);
+      background: var(--c-card);
+    }
+    .policy-head h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      line-height: 1.15;
+    }
+    .policy-close {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--c-line-strong);
+      background: transparent;
+      cursor: pointer;
+    }
+    .policy-close:hover { background: var(--c-bg); border-color: var(--c-ink); }
+    .policy-close svg { width: 18px; height: 18px; }
+
+    .policy-body {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 24px 28px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #4A4340;
+    }
+    .policy-body h3 {
+      margin: 26px 0 8px;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: var(--c-ink);
+    }
+    .policy-body p { margin: 0 0 12px; }
+    .policy-body ul { margin: 0 0 12px; padding-left: 20px; }
+    .policy-body li { margin-bottom: 6px; }
+    .policy-body a { color: var(--c-ink); text-underline-offset: 3px; }
+    .policy-meta { margin-top: 16px !important; font-size: 0.82rem; color: var(--c-muted); }
+    .policy-summary {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: var(--c-sage);
+    }
+    .policy-summary ul { margin: 0; }
+    .policy-table-wrap { overflow-x: auto; margin: 0 0 12px; }
+    .policy-table {
+      width: 100%;
+      min-width: 480px;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .policy-table th, .policy-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--c-line);
+      text-align: left;
+      vertical-align: top;
+    }
+    .policy-table th { background: var(--c-bg); font-weight: 600; color: var(--c-ink); }
+    .owner-missing {
+      padding: 1px 6px;
+      border-radius: 6px;
+      background: var(--c-alert-bg);
+      color: var(--c-alert-ink);
+      font-size: 0.85em;
+    }
+
+    /* Pulsanti del footer che aprono le informative */
+    .footer-links .link-like {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--c-bg);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: left;
+    }
+    .footer-links .link-like:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* Banner cookie: informativo, non blocca la navigazione */
+    .cookie-banner {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 250;
+      width: min(440px, calc(100% - 32px));
+      padding: 20px 22px 18px;
+      border-radius: var(--radius-md);
+      background: var(--c-card);
+      color: var(--c-ink);
+      border: 1px solid var(--c-line);
+      box-shadow: 0 24px 60px -18px rgba(63, 57, 54, 0.4);
+      animation: banner-in 0.45s var(--ease) both;
+    }
+    .cookie-banner[hidden] { display: none; }
+    @keyframes banner-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cookie-banner h2 {
+      margin: 0 36px 6px 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.15rem;
+    }
+    .cookie-banner p {
+      margin: 0 0 14px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #4A4340;
+    }
+    .cookie-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
+    }
+    .cookie-actions .btn { min-height: 44px; padding: 10px 22px; font-size: 0.9rem; }
+    .cookie-actions .link-button {
+      border: 0;
+      background: none;
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: var(--c-ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+    }
+    .cookie-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--c-muted);
+      cursor: pointer;
+    }
+    .cookie-close:hover { background: var(--c-bg); color: var(--c-ink); }
+    .cookie-close svg { width: 16px; height: 16px; }
+
+    @media (max-width: 640px) {
+      .policy-dialog {
+        width: 100%;
+        max-width: 100%;
+        max-height: 92vh;
+        margin: auto 0 0;          /* si apre dal basso, come su un'app */
+        border-radius: 22px 22px 0 0;
+      }
+      .policy-head { padding: 16px 18px; }
+      .policy-body { padding: 4px 18px 28px; }
+      .cookie-banner {
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        width: auto;
+        padding: 18px 18px 16px;
+      }
+      .cookie-actions .btn { flex: 1 1 auto; }
+    }
 
     /* ==============================================================
        11. RESPONSIVE
@@ -1266,11 +1461,10 @@
         <div>
           <h3 class="footer-title">Link utili</h3>
           <ul class="footer-links">
-            <li><a href="https://www.amazon.it/" target="_blank" rel="nofollow noopener noreferrer">Amazon.it</a></li>
-            <!-- Gli URL di queste pagine si impostano in SITE_CONFIG, nello script -->
-            <li><a href="#informazioni" data-config-key="privacyPolicyUrl">Privacy policy</a></li>
-            <li><a href="#informazioni" data-config-key="cookiePolicyUrl">Cookie policy</a></li>
-            <li><a href="#informazioni" data-config-key="contactUrl">Contatti</a></li>
+            <li><a href="https://link.amazon/B097HQzeA" target="_blank" rel="sponsored nofollow noopener noreferrer">Amazon.it</a></li>
+            <!-- Le informative si aprono in una finestra popup (testi più in basso, nei <dialog>) -->
+            <li><button class="link-like" type="button" data-open-dialog="privacy-dialog">Privacy policy</button></li>
+            <li><button class="link-like" type="button" data-open-dialog="cookie-dialog">Cookie policy</button></li>
           </ul>
         </div>
       </div>
@@ -1283,6 +1477,144 @@
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ================================================================
+       ✏️ INFORMATIVA PRIVACY (popup)
+       Nome ed email del titolare si inseriscono in SITE_CONFIG, nello script.
+       Rileggi i testi prima di pubblicare e aggiornali se aggiungi servizi
+       (statistiche, newsletter, moduli, pixel pubblicitari...).
+       ================================================================ -->
+  <dialog class="policy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="policy-head">
+      <h2 id="privacy-title">Informativa sulla privacy</h2>
+      <button class="policy-close" type="button" data-close-dialog aria-label="Chiudi l'informativa sulla privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="policy-body">
+      <p class="policy-meta">Ultimo aggiornamento: <span data-policy-date></span></p>
+      <p>Questa informativa spiega quali dati personali vengono trattati quando visiti Lunaria, ai sensi degli artt. 13 e 14 del Regolamento (UE) 2016/679 (“GDPR”) e del Codice in materia di protezione dei dati personali (D.Lgs. 196/2003, come modificato dal D.Lgs. 101/2018).</p>
+
+      <div class="policy-summary">
+        <ul>
+          <li>Lunaria non ha moduli, newsletter, account o carrello: <strong>non ti chiediamo alcun dato</strong>.</li>
+          <li>Non usiamo cookie di profilazione, strumenti di statistica o pubblicità mirata.</li>
+          <li>Gli acquisti avvengono interamente su Amazon.it, che tratta i tuoi dati in modo autonomo.</li>
+        </ul>
+      </div>
+
+      <h3>1. Titolare del trattamento</h3>
+      <p>Titolare del trattamento è <span data-owner="name"></span>. Per qualsiasi domanda o richiesta sulla privacy puoi scrivere a <span data-owner="email"></span>.</p>
+
+      <h3>2. Dati di navigazione (hosting)</h3>
+      <p>Il sito è ospitato da Vercel Inc. Come ogni servizio di hosting, i server registrano automaticamente alcuni dati tecnici necessari a mostrare le pagine e a proteggerle da abusi: indirizzo IP, data e ora della visita, pagina richiesta, tipo di browser e di dispositivo.</p>
+      <ul>
+        <li><strong>Finalità:</strong> funzionamento e sicurezza del sito.</li>
+        <li><strong>Base giuridica:</strong> legittimo interesse del titolare a offrire un sito funzionante e sicuro (art. 6, par. 1, lett. f GDPR).</li>
+        <li><strong>Conservazione:</strong> per il tempo strettamente necessario, secondo i periodi tecnici del fornitore di hosting.</li>
+        <li><strong>Trasferimento fuori dall'UE:</strong> Vercel opera anche negli Stati Uniti. Il trasferimento avviene sulla base delle garanzie previste dagli artt. 45 e 46 GDPR, come il Data Privacy Framework UE-USA o le Clausole Contrattuali Standard. Maggiori dettagli nella <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy di Vercel</a>.</li>
+      </ul>
+
+      <h3>3. Foto dei prodotti e link affiliati Amazon</h3>
+      <p>Le foto dei prodotti sono caricate direttamente dai server di Amazon: per mostrarle, il tuo browser comunica ad Amazon il tuo indirizzo IP e i dati tecnici della richiesta.</p>
+      <p>Lunaria partecipa al Programma Affiliazione Amazon EU, un programma di affiliazione che consente ai siti di percepire una commissione pubblicitaria pubblicizzando e fornendo link al sito Amazon.it. In qualità di Affiliato Amazon, il titolare riceve un guadagno dagli acquisti idonei.</p>
+      <p>Quando clicchi su “Verifica disponibilità” vieni portato su Amazon.it. Da quel momento i tuoi dati sono trattati da Amazon come titolare autonomo, secondo l'<a href="https://www.amazon.it/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener noreferrer">Informativa sulla privacy di Amazon.it</a>. Come previsto dal Programma Affiliazione, ti informiamo che terze parti, inclusa Amazon, possono mostrare contenuti, raccogliere informazioni direttamente dai visitatori e installare o riconoscere cookie sui loro browser, ad esempio per attribuire un acquisto al link da cui proviene. Da Amazon riceviamo soltanto report aggregati sulle vendite, che non permettono di identificarti.</p>
+
+      <h3>4. Memoria locale del browser</h3>
+      <p>Per non mostrarti ogni volta l'avviso sui cookie, il sito salva nel tuo browser (localStorage) un'informazione tecnica che indica che lo hai già chiuso. Non contiene dati personali, non viene inviata a nessun server e puoi cancellarla in qualsiasi momento dalle impostazioni del browser.</p>
+
+      <h3>5. Chi può ricevere i dati</h3>
+      <ul>
+        <li>Vercel Inc., fornitore di hosting, che agisce come responsabile del trattamento (art. 28 GDPR).</li>
+        <li>Amazon, come titolare autonomo, per le foto dei prodotti e per tutto ciò che avviene su Amazon.it.</li>
+      </ul>
+      <p>I dati non vengono venduti né usati per profilazione o pubblicità.</p>
+
+      <h3>6. I tuoi diritti</h3>
+      <p>Puoi chiedere in qualsiasi momento l'accesso ai tuoi dati, la rettifica, la cancellazione, la limitazione del trattamento, la portabilità e opporti al trattamento basato sul legittimo interesse (artt. 15–22 GDPR), scrivendo all'indirizzo indicato al punto 1. Poiché il sito non raccoglie dati che permettono di identificarti direttamente, potremmo chiederti alcune informazioni per individuare i dati che ti riguardano (art. 11 GDPR).</p>
+      <p>Hai inoltre il diritto di proporre reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).</p>
+
+      <h3>7. Modifiche</h3>
+      <p>Questa informativa può essere aggiornata, ad esempio se cambiano i servizi utilizzati dal sito. La data dell'ultimo aggiornamento è indicata in alto.</p>
+    </div>
+  </dialog>
+
+  <!-- ================================================================
+       ✏️ COOKIE POLICY (popup)
+       ATTENZIONE: se in futuro aggiungi Google Analytics, pixel di Facebook/Meta,
+       video di YouTube, mappe o altri strumenti di terze parti, servirà un banner
+       con il consenso (pulsanti "Accetta" e "Rifiuta" equivalenti) PRIMA di attivarli,
+       e questa informativa andrà aggiornata.
+       ================================================================ -->
+  <dialog class="policy-dialog" id="cookie-dialog" aria-labelledby="cookie-title">
+    <div class="policy-head">
+      <h2 id="cookie-title">Cookie policy</h2>
+      <button class="policy-close" type="button" data-close-dialog aria-label="Chiudi la cookie policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="policy-body">
+      <p class="policy-meta">Ultimo aggiornamento: <span data-policy-date></span></p>
+      <p>Questa cookie policy è redatta ai sensi dell'art. 122 del Codice in materia di protezione dei dati personali e delle Linee guida del Garante Privacy sui cookie e altri strumenti di tracciamento del 10 giugno 2021.</p>
+
+      <div class="policy-summary">
+        <ul>
+          <li><strong>Lunaria non installa cookie di profilazione, di statistica o di marketing.</strong></li>
+          <li>Usa un solo strumento tecnico, che non richiede il tuo consenso.</li>
+          <li>Su Amazon.it valgono i cookie e le scelte di Amazon.</li>
+        </ul>
+      </div>
+
+      <h3>Cosa sono i cookie</h3>
+      <p>I cookie e gli strumenti simili, come la memoria locale del browser, sono piccole informazioni che un sito salva sul tuo dispositivo. Quelli <em>tecnici</em> servono a far funzionare il sito e non richiedono consenso. Quelli di <em>profilazione</em> o di <em>statistica non anonima</em> possono essere usati solo con il tuo consenso preventivo.</p>
+
+      <h3>Strumenti usati da Lunaria</h3>
+      <div class="policy-table-wrap">
+        <table class="policy-table">
+          <thead>
+            <tr><th scope="col">Nome</th><th scope="col">Tipo</th><th scope="col">Finalità</th><th scope="col">Durata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>lunaria-cookie-notice</code></td>
+              <td>Tecnico, memoria locale del browser (localStorage), prima parte</td>
+              <td>Ricorda che hai chiuso l'avviso sui cookie, per non mostrartelo a ogni visita</td>
+              <td>Fino a quando non lo cancelli dal browser</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Il sito non utilizza cookie di terze parti, strumenti di analisi, pixel pubblicitari o pulsanti social. Le foto dei prodotti sono caricate dai server di Amazon senza l'uso di cookie.</p>
+
+      <h3>Quando clicchi su un prodotto</h3>
+      <p>Il pulsante “Verifica disponibilità” ti porta su Amazon.it tramite un link di affiliazione. Su Amazon.it vengono usati i cookie di Amazon, anche per attribuire l'eventuale acquisto al nostro link, secondo l'<a href="https://www.amazon.it/gp/help/customer/display.html?nodeId=201890250" target="_blank" rel="noopener noreferrer">Informativa su cookie e pubblicità di Amazon</a>. Puoi gestire le tue preferenze direttamente su Amazon.it.</p>
+
+      <h3>Come gestire o cancellare i cookie</h3>
+      <p>Puoi cancellare i dati salvati e bloccare i cookie dalle impostazioni del tuo browser:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647?hl=it" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+        <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a></li>
+        <li><a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+        <li><a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+      </ul>
+
+      <h3>Titolare e contatti</h3>
+      <p>Titolare del trattamento è <span data-owner="name"></span> (<span data-owner="email"></span>). Per sapere di più sui tuoi dati e sui tuoi diritti leggi l'<button class="link-button" type="button" data-open-dialog="privacy-dialog">Informativa sulla privacy</button>.</p>
+    </div>
+  </dialog>
+
+  <!-- ================================================================
+       BANNER COOKIE (informativo)
+       Il sito usa solo uno strumento tecnico: per le Linee guida del Garante
+       non serve il consenso, quindi il banner informa e si chiude con
+       "Ho capito" o con la X. Non blocca la navigazione.
+       ================================================================ -->
+  <section class="cookie-banner" id="cookie-banner" aria-labelledby="cookie-banner-title" hidden>
+    <button class="cookie-close" type="button" id="cookie-close" aria-label="Chiudi l'avviso sui cookie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <h2 id="cookie-banner-title">Niente cookie di profilazione</h2>
+    <p>Lunaria non usa cookie di profilazione, di statistica o di marketing: salva solo un'informazione tecnica per ricordare che hai letto questo avviso. Se clicchi su un prodotto, su Amazon.it valgono i cookie di Amazon.</p>
+    <div class="cookie-actions">
+      <button class="btn" type="button" id="cookie-ok">Ho capito</button>
+      <button class="link-button" type="button" data-open-dialog="cookie-dialog">Cookie policy</button>
+      <button class="link-button" type="button" data-open-dialog="privacy-dialog">Privacy</button>
+    </div>
+  </section>
 
   <script>
     'use strict';
@@ -1316,8 +1648,8 @@
         affiliateUrl: "https://link.amazon/B05lbXtVl",
         images: [
           "https://m.media-amazon.com/images/I/61pnjnS3MbL._AC_SL500_.jpg",   // foto 1 (principale)
-          "https://m.media-amazon.com/images/I/41HTxmz8jGL._AC_SL500_.jpg",   // foto 2
-          "https://m.media-amazon.com/images/I/51CFtMeERKL._AC_SL500_.jpg"    // foto 3
+          "https://m.media-amazon.com/images/I/71L2EkAwunL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71HZFfaAwzL._AC_SL1500_.jpg"   // foto 3
         ]
       },
       {
@@ -1506,13 +1838,15 @@
 
     /* ================================================================
        ✏️ 2. CONFIGURAZIONE DEL SITO
-       Incolla qui gli URL delle tue pagine informative quando le avrai create.
-       Finché un campo resta vuoto, il link nel footer mostra "da completare".
+       Dati del titolare mostrati nella privacy policy e nella cookie policy.
+       Sono obbligatori per il GDPR: finché restano vuoti, nelle informative
+       compare l'avviso "da completare".
        ================================================================ */
     const SITE_CONFIG = {
-      privacyPolicyUrl: "",   // es. "privacy.html" oppure "https://tuosito.it/privacy"
-      cookiePolicyUrl: "",    // es. "cookie.html"
-      contactUrl: ""          // es. "contatti.html" oppure "mailto:info@tuosito.it"
+      ownerName: "LUNARIA",                     // es. "Mario Rossi" oppure "Lunaria di Mario Rossi"
+      ownerEmail: "lunaria.privacy@gmail.com",                    // es. "privacy@tuosito.it"
+      policyUpdated: "26 ottobre 2026",  // data dell'ultimo aggiornamento delle informative
+      cookieNoticeVersion: "2026-10-26"  // cambiala se modifichi l'avviso: il banner ricomparirà a tutti
     };
 
     /* ================================================================
@@ -2063,28 +2397,97 @@
       start();
     }
 
-    /* ---------- Link alle pagine informative del footer ---------- */
-    function setupInfoLinks() {
-      document.querySelectorAll("[data-config-key]").forEach(function (link) {
-        const key = link.dataset.configKey;
-        const value = String(SITE_CONFIG[key] || "").trim();
-        const isSafe = value && !/^\s*(javascript|data|vbscript):/i.test(value);
-
-        if (isSafe) {
-          link.href = value;
-          return;
+    /* ---------- Informative privacy e cookie (popup) ---------- */
+    function fillOwnerData() {
+      document.querySelectorAll("[data-policy-date]").forEach(function (el) {
+        el.textContent = SITE_CONFIG.policyUpdated;
+      });
+      document.querySelectorAll("[data-owner]").forEach(function (el) {
+        const field = el.dataset.owner;
+        const value = String(field === "email" ? SITE_CONFIG.ownerEmail : SITE_CONFIG.ownerName).trim();
+        el.replaceChildren();
+        if (!value) {
+          // Dato obbligatorio non ancora inserito: lo segnaliamo in modo visibile
+          const missing = document.createElement("span");
+          missing.className = "owner-missing";
+          missing.textContent = field === "email"
+            ? "[email da completare in SITE_CONFIG.ownerEmail]"
+            : "[nome da completare in SITE_CONFIG.ownerName]";
+          el.appendChild(missing);
+        } else if (field === "email" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          const link = document.createElement("a");
+          link.href = "mailto:" + value;
+          link.textContent = value;
+          el.appendChild(link);
+        } else {
+          el.textContent = value;
         }
-        // Pagina non ancora creata: lo diciamo chiaramente, senza fingere che esista
-        link.classList.add("is-pending");
-        const tag = document.createElement("span");
-        tag.className = "pending-tag";
-        tag.textContent = "da completare";
-        link.appendChild(tag);
-        link.addEventListener("click", function (event) {
+      });
+    }
+
+    let lastFocus = null;
+    function openDialog(id) {
+      const dialog = document.getElementById(id);
+      if (!dialog) return;
+      document.querySelectorAll(".policy-dialog[open]").forEach(function (d) {
+        if (d !== dialog) d.close();
+      });
+      if (!dialog.open) {
+        lastFocus = lastFocus || document.activeElement;
+        if (typeof dialog.showModal === "function") dialog.showModal();
+        else dialog.setAttribute("open", "");
+      }
+      dialog.querySelector(".policy-body").scrollTop = 0;
+      document.documentElement.classList.add("dialog-open");
+    }
+
+    function setupDialogs() {
+      document.addEventListener("click", function (event) {
+        const opener = event.target.closest("[data-open-dialog]");
+        if (opener) {
           event.preventDefault();
-          showToast("Pagina non ancora collegata: inserisci l'URL in SITE_CONFIG." + key + ".");
+          openDialog(opener.dataset.openDialog);
+        }
+      });
+
+      document.querySelectorAll(".policy-dialog").forEach(function (dialog) {
+        dialog.querySelector("[data-close-dialog]").addEventListener("click", function () {
+          if (typeof dialog.close === "function") dialog.close();
+          else { dialog.removeAttribute("open"); dialog.dispatchEvent(new Event("close")); }
+        });
+        // Clic sullo sfondo scuro: chiude la finestra
+        dialog.addEventListener("click", function (event) {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener("close", function () {
+          if (document.querySelector(".policy-dialog[open]")) return;
+          document.documentElement.classList.remove("dialog-open");
+          if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+          lastFocus = null;
         });
       });
+
+      // Link diretti: tuosito.it/#privacy oppure tuosito.it/#cookie
+      if (location.hash === "#privacy") openDialog("privacy-dialog");
+      if (location.hash === "#cookie") openDialog("cookie-dialog");
+    }
+
+    /* ---------- Banner cookie ---------- */
+    const COOKIE_NOTICE_KEY = "lunaria-cookie-notice";
+
+    function setupCookieBanner() {
+      const banner = document.getElementById("cookie-banner");
+      let seen = null;
+      try { seen = localStorage.getItem(COOKIE_NOTICE_KEY); } catch (e) { /* memoria non disponibile */ }
+      if (seen === SITE_CONFIG.cookieNoticeVersion) return;
+
+      banner.hidden = false;
+      function dismiss() {
+        try { localStorage.setItem(COOKIE_NOTICE_KEY, SITE_CONFIG.cookieNoticeVersion); } catch (e) { /* ignora */ }
+        banner.hidden = true;
+      }
+      document.getElementById("cookie-ok").addEventListener("click", dismiss);
+      document.getElementById("cookie-close").addEventListener("click", dismiss);
     }
 
     /* ---------- Controlli di coerenza (visibili nella console del browser) ---------- */
@@ -2118,7 +2521,9 @@
     validateCatalog();
     renderProducts();
     setupHeroCarousel();
-    setupInfoLinks();
+    fillOwnerData();
+    setupDialogs();
+    setupCookieBanner();
   </script>
 </body>
 </html>
