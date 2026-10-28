@@ -1321,7 +1321,9 @@
           <div class="hero-content">
             <p class="eyebrow">Cura personale · Comfort · Relax</p>
             <h1 id="hero-title">Il tuo benessere, <em>ogni giorno.</em></h1>
-            <p class="hero-lead">Una selezione di idee per prenderti cura di te: dalla routine di bellezza ai momenti di relax, fino ai piccoli comfort quotidiani.</p>
+            <p class="hero-lead">Meriti il meglio. Per questo, ogni mese Lunaria sceglie prodotti esclusivi, pensati per le tue esigenze reali, con un tasso di soddisfazione del <b>99,4%</b> 
+
+              <b>Scopri qui sotto tutti i prodotti Lunaria di questo mese!</b></p>
             <div class="hero-actions">
               <a class="btn" href="#prodotti">
                 Scopri la selezione
@@ -1330,7 +1332,7 @@
               <a class="btn btn-ghost" href="#filosofia">La nostra filosofia</a>
             </div>
             <p class="hero-note">
-              <span>15 idee selezionate</span>
+              <span>50 idee selezionate</span>
               <span>Link diretti ad Amazon.it</span>
             </p>
           </div>
@@ -1453,11 +1455,11 @@
           <h3 class="footer-title">Trasparenza</h3>
           <!-- ✏️ Verifica la formulazione richiesta dalle condizioni aggiornate
                del Programma Affiliazione Amazon.it prima di pubblicare. -->
-          <p class="disclosure">In qualità di Affiliato Amazon, ricevo un guadagno dagli acquisti idonei.</p>
-          <p class="footer-small">I pulsanti “Verifica disponibilità” rimandano ad Amazon.it tramite link di affiliazione. Prezzi, disponibilità e condizioni di vendita sono indicati esclusivamente sulla pagina Amazon del prodotto.</p>
-          <p class="footer-small">Lunaria è una vetrina indipendente e non è il negozio ufficiale di Amazon.</p>
+          
+               <p class="footer-small">
+                 Tutti i link portano ad Amazon.it, uno dei marketplace più conosciuti al mondo, per verificare prezzi e disponibilità e acquistare in sicurezza. Lunaria è indipendente e può ricevere commissioni sugli acquisti idonei.
+               </p>
         </div>
-
         <div>
           <h3 class="footer-title">Link utili</h3>
           <ul class="footer-links">
@@ -1640,198 +1642,702 @@
        ================================================================ */
     const products = [
       {
-        id: "cintura-termica",
-        title: "Cintura termica per il ciclo",
-        category: "Ciclo mestruale e comfort",
-        description: "Una fascia riscaldante da indossare in vita, pensata per regalarti una piacevole sensazione di calore nei giorni del ciclo.",
-        benefits: ["Sensazione di calore avvolgente", "Fascia regolabile in vita", "Da usare a casa o in ufficio"],
-        affiliateUrl: "https://link.amazon/B05lbXtVl",
-        images: [
-          "https://m.media-amazon.com/images/I/61pnjnS3MbL._AC_SL500_.jpg",   // foto 1 (principale)
-          "https://m.media-amazon.com/images/I/71L2EkAwunL._AC_SL1500_.jpg",   // foto 2
-          "https://m.media-amazon.com/images/I/71HZFfaAwzL._AC_SL1500_.jpg"   // foto 3
-        ]
-      },
-      {
-        id: "rullo-viso",
-        title: "Rullo massaggiante per il viso",
+        // Amazon.it ASIN B018T7DI0Y — 4,6★, 8.111 recensioni, 43,65 € (verificato il 28/10/2026)
+        id: "foreo-luna-mini-2",
+        title: "FOREO LUNA mini 2 – Spazzola viso sonica",
         category: "Cura della pelle",
-        description: "Un piccolo strumento da passare delicatamente sul viso, per trasformare la skincare in un momento di cura e lentezza.",
-        benefits: ["Gesto rilassante nella routine", "Si abbina a sieri e creme", "Facile da pulire e riporre"],
-        affiliateUrl: "https://link.amazon/B07Mkps8h",
+        description: "Spazzola compatta in silicone morbido con pulsazioni T-Sonic: accompagna la detersione quotidiana del viso con tre zone di setole per le diverse aree. Piccola e pratica anche in viaggio.",
+        benefits: ["Silicone morbido, più igienico delle setole in nylon", "Tre zone di contatto: spesse, sottili e medie", "Formato compatto da viaggio"],
+        affiliateUrl: "https://www.amazon.it/dp/B018T7DI0Y?tag=amzaff0ba-21",
         images: [
-          "https://m.media-amazon.com/images/I/71LT6xD5oYL._AC_SL500_.jpg",   // foto 1 (principale)
-          "https://m.media-amazon.com/images/I/41hCUCl6qlL._AC_SL500_.jpg",   // foto 2
-          "https://m.media-amazon.com/images/I/41Sp7JWzrpL._AC_SL500_.jpg"    // foto 3
+          "https://m.media-amazon.com/images/I/71Hvjmsb4WL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81cvM1R+eOL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71tjnuK+-aL._AC_SL1500_.jpg"   // foto 3
         ]
       },
       {
-        id: "cuscino-ergonomico",
-        title: "Cuscino ergonomico per dormire",
-        category: "Sonno e relax",
-        description: "Una forma pensata per accompagnare collo e spalle durante il riposo e aiutarti a trovare una posizione più confortevole.",
-        benefits: ["Sostegno per collo e spalle", "Forma studiata per il riposo", "Da scegliere in base a come dormi"],
-        affiliateUrl: "https://link.amazon/B06109Hu2",
-        images: [
-          "https://m.media-amazon.com/images/I/718ZL7ApAqL._AC_SL500_.jpg",   // foto 1 (principale)
-          "https://m.media-amazon.com/images/I/412d9f6iC1L._AC_SL500_.jpg",   // foto 2
-          "https://m.media-amazon.com/images/I/41n54KbIIZL._AC_SL500_.jpg"    // foto 3
-        ]
-      },
-      {
-        id: "spazzola-districante",
-        title: "Spazzola districante",
-        category: "Capelli e bellezza",
-        description: "Setole flessibili che scorrono tra i nodi con delicatezza, per una spazzolatura più piacevole ogni giorno.",
-        benefits: ["Setole flessibili", "Gesto delicato sui nodi", "Formato comodo da borsa"],
-        affiliateUrl: "https://link.amazon/B0cSH8yDE",
-        images: [
-          "https://m.media-amazon.com/images/I/815+fKxC7YL._AC_SL500_.jpg",   // foto 1 (principale)
-          "https://m.media-amazon.com/images/I/41biHUtDn8L._AC_SL500_.jpg",   // foto 2
-          "https://m.media-amazon.com/images/I/41C3zOQZCIL._AC_SL500_.jpg"    // foto 3
-        ]
-      },
-      {
-        id: "massaggiatore-corpo",
-        title: "Massaggiatore per il corpo",
-        category: "Benessere quotidiano",
-        description: "Per concederti qualche minuto di massaggio rilassante su spalle, schiena e gambe dopo una lunga giornata.",
-        benefits: ["Un momento di relax a fine giornata", "Per spalle, schiena e gambe", "Diverse intensità, secondo il modello"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "mascherina-sonno",
-        title: "Mascherina per dormire",
-        category: "Sonno e relax",
-        description: "Morbida e leggera, scherma la luce per accompagnarti nel riposo, a casa come in viaggio.",
-        benefits: ["Scherma la luce", "Tessuto morbido sulla pelle", "Perfetta anche in viaggio"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "maschere-viso",
-        title: "Maschere in tessuto per il viso",
+        // Amazon.it ASIN B07PHZS8MV — 4,6★, 18.567 recensioni, 23,95 € (verificato il 28/10/2026)
+        id: "rullo-gua-sha-quarzo-rosa",
+        title: "PLANTIFIQUE – Rullo viso e Gua Sha in quarzo rosa",
         category: "Cura della pelle",
-        description: "Un piccolo rituale di bellezza da concederti la sera o nel weekend, con formule diverse in base alle esigenze della pelle.",
-        benefits: ["Rituale di bellezza veloce", "Formule per diverse esigenze", "Monouso e pratiche"],
-        affiliateUrl: "",
+        description: "Set con rullo e pietra gua sha in quarzo rosa, lavorati a mano: da passare delicatamente sul viso dopo sieri e creme, per un massaggio rilassante nella routine di bellezza.",
+        benefits: ["Rullo e gua sha in vero quarzo rosa", "Da usare con siero o crema", "Massaggio viso rilassante"],
+        affiliateUrl: "https://www.amazon.it/dp/B07PHZS8MV?tag=amzaff0ba-21",
         images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
+          "https://m.media-amazon.com/images/I/711QANZN8IL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/713Kc5tP0cL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71CzFh0eWUL._AC_SL1500_.jpg"   // foto 3
         ]
       },
       {
-        id: "borsa-acqua-calda",
-        title: "Borsa dell'acqua calda con fodera",
-        category: "Ciclo mestruale e comfort",
-        description: "Un classico intramontabile per le serate fredde e per i giorni in cui serve un po' di calore in più.",
-        benefits: ["Fodera morbida al tatto", "Calore piacevole sul divano o a letto", "Da riempire seguendo le istruzioni"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "spazzola-cuoio-capelluto",
-        title: "Spazzola massaggiante per il cuoio capelluto",
-        category: "Capelli e bellezza",
-        description: "Punte morbide per un massaggio rilassante durante lo shampoo o a capelli asciutti.",
-        benefits: ["Massaggio delicato e rilassante", "Utilizzabile anche sotto la doccia", "Impugnatura comoda"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "cuscino-gambe",
-        title: "Cuscino per le gambe",
-        category: "Sonno e relax",
-        description: "Da posizionare tra le ginocchia quando dormi su un fianco, per trovare una posizione più comoda.",
-        benefits: ["Pensato per chi dorme sul fianco", "Forma che segue le gambe", "Utile anche per il relax sul divano"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "impacco-caldo-freddo",
-        title: "Impacco caldo/freddo riutilizzabile",
-        category: "Ciclo mestruale e comfort",
-        description: "Un impacco in gel da scaldare o raffreddare secondo le istruzioni, per una piacevole sensazione di caldo o di fresco.",
-        benefits: ["Utilizzabile caldo o freddo", "Riutilizzabile più volte", "Formato flessibile"],
-        affiliateUrl: "",
-        images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
-        ]
-      },
-      {
-        id: "organizer-skincare",
-        title: "Organizer per prodotti skincare",
+        // Amazon.it ASIN B0FN4CV6QW — 4,5★, 140 recensioni, 78,50 € (verificato il 28/10/2026)
+        id: "revolution-pro-maschera-led",
+        title: "Revolution Pro Miracle – Maschera viso LED",
         category: "Cura della pelle",
-        description: "Riunisce creme, sieri e trucchi in un unico spazio, per una routine più ordinata e piacevole da seguire.",
-        benefits: ["Tutto a portata di mano", "Scomparti di diverse misure", "Ideale per bagno o toeletta"],
-        affiliateUrl: "",
+        description: "Maschera LED leggera e senza fili con 90 luci e 7 modalità luminose, tra cui rossa e blu, per un trattamento di bellezza da fare comodamente a casa.",
+        benefits: ["90 LED, 7 modalità di luce", "Leggera e senza fili", "Da usare a casa seguendo le istruzioni"],
+        affiliateUrl: "https://www.amazon.it/dp/B0FN4CV6QW?tag=amzaff0ba-21",
         images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
+          "https://m.media-amazon.com/images/I/61-e373oUcL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/715fnpTkPPL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71N31A1AiuL._AC_SL1500_.jpg"   // foto 3
         ]
       },
       {
-        id: "accessori-capelli",
-        title: "Elastici e fermagli in raso",
-        category: "Capelli e bellezza",
-        description: "Accessori morbidi ed eleganti per raccogliere i capelli con delicatezza, di giorno o per la notte.",
-        benefits: ["Tessuto morbido", "Stile semplice ed elegante", "Più colori in un unico set"],
-        affiliateUrl: "",
+        // Amazon.it ASIN B0B5PJ41ZT — 4,7★, 14.424 recensioni, 26,60 € (verificato il 28/10/2026)
+        id: "beauty-of-joseon-sun-rice",
+        title: "Beauty of Joseon Relief Sun – Protezione solare SPF 50",
+        category: "Cura della pelle",
+        description: "La protezione solare coreana più amata: SPF 50 ad ampio spettro con texture idratante e delicata, pensata per l'uso quotidiano anche sulle pelli che si irritano facilmente.",
+        benefits: ["SPF 50 ad ampio spettro", "Formula idratante a base di riso", "Adatta all'uso quotidiano"],
+        affiliateUrl: "https://www.amazon.it/dp/B0B5PJ41ZT?tag=amzaff0ba-21",
         images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
+          "https://m.media-amazon.com/images/I/41t+LxZndIL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/41b4y-sLsFL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/6103wN-VXVL._AC_SL1500_.jpg"   // foto 3
         ]
       },
       {
-        id: "rullo-schiuma",
-        title: "Rullo in schiuma per il corpo",
+        // Amazon.it ASIN B00Z72U6JQ — 4,6★, 11.107 recensioni, 25,34 € (verificato il 28/10/2026)
+        id: "isdin-fusion-water-magic",
+        title: "ISDIN Fusion Water MAGIC – Solare viso SPF 50",
+        category: "Cura della pelle",
+        description: "Protezione solare viso ultraleggera a base acquosa, con acido ialuronico: si assorbe subito e si indossa ogni giorno, anche sotto il trucco.",
+        benefits: ["Alta protezione UVA e UVB, SPF 50", "Con acido ialuronico", "Texture ultraleggera, assorbimento immediato"],
+        affiliateUrl: "https://www.amazon.it/dp/B00Z72U6JQ?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61lHLKbtJNL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81bfZavMnAL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81hBg-UQ0kL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B00JD9SQ6O — 4,5★, 3.009 recensioni, 38,99 € (verificato il 28/10/2026)
+        id: "filorga-time-filler-eyes",
+        title: "Filorga Time-Filler Eyes – Crema contorno occhi",
+        category: "Cura della pelle",
+        description: "Crema per il contorno occhi della linea Time-Filler di Filorga, in formato da 15 ml: una texture leggera da applicare mattina e sera nella tua routine.",
+        benefits: ["Specifica per il contorno occhi", "Formato da 15 ml", "Per la routine di mattina e sera"],
+        affiliateUrl: "https://www.amazon.it/dp/B00JD9SQ6O?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/51URPsAsIgL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71GyLZosMDL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71YferUn+RL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0G38FGSKL — 4,5★, 1.778 recensioni, 22,00 € (verificato il 28/10/2026)
+        id: "medicube-patch-occhi-pdrn",
+        title: "medicube PDRN – Patch occhi in gel con caffeina e collagene",
+        category: "Cura della pelle",
+        description: "Patch in gel per il contorno occhi con PDRN, caffeina e collagene, dalla skincare coreana: un gesto fresco e veloce per il mattino o prima di un evento.",
+        benefits: ["30 paia di patch in gel", "Con PDRN, caffeina e collagene", "Effetto fresco sul contorno occhi"],
+        affiliateUrl: "https://www.amazon.it/dp/B0G38FGSKL?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/51LWywtzNBL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71qUV8efX8L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71sd94kMIwL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07DY2QRF6 — 4,7★, 27.210 recensioni, 21,84 € (verificato il 28/10/2026)
+        id: "laneige-labbra-berry",
+        title: "LANEIGE – Trattamento labbra Berry",
+        category: "Cura della pelle",
+        description: "Il celebre trattamento labbra di LANEIGE al profumo di frutti di bosco: si applica come ultimo passaggio della skincare, anche di notte, per labbra morbide al risveglio.",
+        benefits: ["Iconico della skincare coreana", "Ideale come trattamento notte", "Profumo ai frutti di bosco"],
+        affiliateUrl: "https://www.amazon.it/dp/B07DY2QRF6?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/610t3dMz1GL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81TLb-XxkLL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71xFgWY9sCL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B01KZ2F8EA — 4,6★, 629 recensioni, 32,99 € (verificato il 28/10/2026)
+        id: "beurer-specchio-led",
+        title: "Beurer BS 55 – Specchio cosmetico LED",
+        category: "Cura della pelle",
+        description: "Specchio per il trucco a doppia faccia, normale e con ingrandimento 7x, illuminato da 18 LED regolabili con un semplice tocco sulla superficie.",
+        benefits: ["Lato normale e lato ingrandimento 7x", "18 LED con intensità regolabile", "Comando touch sullo specchio"],
+        affiliateUrl: "https://www.amazon.it/dp/B01KZ2F8EA?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/81WG3N3SzNL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/41HcOl2VtCL._AC_SL1000_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/519PS1cpXKL._AC_SL1000_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0FZW7VT6J — 4,6★, 5.367 recensioni, 157,98 € (verificato il 28/10/2026)
+        id: "braun-silk-epil-9",
+        title: "Braun Silk-épil 9 – Epilatore elettrico donna",
+        category: "Cura della pelle",
+        description: "Epilatore con testina larga che rimuove anche i peli più corti, fino a 0,5 mm, per una pelle liscia fino a 4 settimane comodamente a casa. Utilizzabile anche sotto la doccia.",
+        benefits: ["Pelle liscia fino a 4 settimane", "Rimuove peli corti fino a 0,5 mm", "Impugnatura sicura anche con acqua"],
+        affiliateUrl: "https://www.amazon.it/dp/B0FZW7VT6J?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/81D1hKM+rOL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71K65t3cZbL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71T23wzV6nL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B091P6G47F — 4,6★, 2.365 recensioni, 26,62 € (verificato il 28/10/2026)
+        id: "silkie-elastici-seta",
+        title: "SILKIE – Set di 4 elastici in pura seta di gelso",
+        category: "Cura dei capelli",
+        description: "Quattro scrunchies in 100% seta di gelso che scorrono sui capelli senza tirare: ideali di giorno o per uno chignon morbido la notte. Con pochette da viaggio.",
+        benefits: ["100% seta di gelso", "Meno nodi e segni dell'elastico", "Pochette da viaggio inclusa"],
+        affiliateUrl: "https://link.amazon/B0gIS9YzD",
+        images: [
+          "https://m.media-amazon.com/images/I/717L2XqB9TL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61Gr+7FEI+L._AC_SL1080_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61cfwCLlmzL._AC_SL1080_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07C13CR57 — 4,6★, 35.553 recensioni, 28,99 € (verificato il 28/10/2026)
+        id: "zimasilk-federa-seta",
+        title: "ZIMASILK – Federa in pura seta di gelso 50 x 75 cm",
+        category: "Cura dei capelli",
+        description: "Federa in 100% seta di gelso 19 momme, liscia su entrambi i lati: i capelli scorrono sul cuscino e la pelle appoggia su un tessuto morbido. Chiusura a zip nascosta.",
+        benefits: ["Seta di gelso grado 6A, 19 momme", "Certificata OEKO-TEX", "Zip nascosta, 50 x 75 cm"],
+        affiliateUrl: "https://www.amazon.it/dp/B07C13CR57?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61sxiz49k7L._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81N1mSQdW1L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71mf9hE5aVL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0C37FH3ZC — 4,6★, 2.064 recensioni, 28,70 € (verificato il 28/10/2026)
+        id: "ghd-spazzola-piatta",
+        title: "ghd The All-Rounder – Spazzola piatta districante",
+        category: "Cura dei capelli",
+        description: "Spazzola piatta professionale con setole resistenti ed effetto antistatico: districa e liscia rapidamente, accelerando l'asciugatura con il phon.",
+        benefits: ["Districa ed elimina l'effetto crespo", "Setole antistatiche", "Impugnatura soft-touch antiscivolo"],
+        affiliateUrl: "https://www.amazon.it/dp/B0C37FH3ZC?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61XAFPo4DSL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61i302hKtRL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/612+CCtfEiL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B083JJHLT4 — 4,6★, 11.709 recensioni, 24,37 € (verificato il 28/10/2026)
+        id: "kerastase-genesis-shampoo",
+        title: "Kérastase Genesis – Shampoo fortificante",
+        category: "Cura dei capelli",
+        description: "Shampoo per capelli fragili e indeboliti, da fini a normali: deterge delicatamente il cuoio capelluto e aiuta a ridurre la caduta dovuta alla rottura. Con estratti di stella alpina e zenzero.",
+        benefits: ["Per capelli fragili e indeboliti", "Deterge a fondo il cuoio capelluto", "Con stella alpina e radice di zenzero"],
+        affiliateUrl: "https://www.amazon.it/dp/B083JJHLT4?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/51Fo+8Fd+IL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61DE6bbWI3L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61MMzu4QX1L._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0CY3GR4FS — 4,6★, 2.706 recensioni, 48,46 € (verificato il 28/10/2026)
+        id: "kerastase-elixir-ultime",
+        title: "Kérastase Elixir Ultime – L'Huile Originale",
+        category: "Cura dei capelli",
+        description: "L'olio iconico di Kérastase con oli di camelia, marula e argan: nutre senza appesantire, protegge dal calore e dona luminosità ai capelli secchi e spenti.",
+        benefits: ["Nutre senza appesantire", "Protegge dal calore dello styling", "Prima dello shampoo, sui capelli umidi o asciutti"],
+        affiliateUrl: "https://www.amazon.it/dp/B0CY3GR4FS?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/51UDRy53ajL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71apIVnfwbL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71MSesyLN1L._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B008B91H0E — 4,7★, 8.051 recensioni, 27,00 € (verificato il 28/10/2026)
+        id: "davines-oi-oil",
+        title: "Davines OI Oil – Olio multifunzione per capelli",
+        category: "Cura dei capelli",
+        description: "Olio per capelli nutriente e anticrespo, con un profumo inconfondibile: un piccolo rituale di bellezza che lascia i capelli morbidi e brillanti.",
+        benefits: ["Nutriente e anticrespo", "Lucentezza e morbidezza intense", "Formato da 50 ml"],
+        affiliateUrl: "https://www.amazon.it/dp/B008B91H0E?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61cxV6UhrbL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81l4t-4lwxL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81J00Y2NN3L._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0BZZJWGPQ — 4,5★, 11.258 recensioni, 39,99 € (verificato il 28/10/2026)
+        id: "kerastase-siero-notte",
+        title: "Kérastase Nutritive 8H Magic Night – Siero notte",
+        category: "Cura dei capelli",
+        description: "Siero da applicare prima di dormire sui capelli secchi: lavora durante la notte e al mattino li ritrovi morbidi, setosi e delicatamente profumati. Non si risciacqua.",
+        benefits: ["Agisce durante il sonno", "Per capelli secchi", "Senza risciacquo"],
+        affiliateUrl: "https://www.amazon.it/dp/B0BZZJWGPQ?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/41NahVAhTIL._AC_SL1007_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61+CkDGelOL._AC_SL1007_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/51dUEJdOQ1L._AC_SL1007_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0CPCV2TGH — 4,6★, 3.330 recensioni, 29,99 € (verificato il 28/10/2026)
+        id: "karseell-maschera-collagene",
+        title: "Karseell MACA – Maschera capelli al collagene",
+        category: "Cura dei capelli",
+        description: "Maschera ristrutturante professionale al collagene con oli di argan, cocco e avocado, pensata per i capelli stressati da trattamenti chimici e calore.",
+        benefits: ["Per capelli trattati e sfibrati", "Con olio di cocco al 4%", "Effetto lucido anticrespo"],
+        affiliateUrl: "https://www.amazon.it/dp/B0CPCV2TGH?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61w49U1fO6L._AC_SL1200_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71kz82hb-kL._AC_SL1254_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71eeadDNrQL._AC_SL1254_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0FLTGFKPR — 4,5★, 1.626 recensioni, 33,64 € (verificato il 28/10/2026)
+        id: "olaplex-rich-hydration-mask",
+        title: "OLAPLEX Rich Hydration Mask – Maschera idratante",
+        category: "Cura dei capelli",
+        description: "Maschera idratante OLAPLEX da 200 ml: idratazione che dura fino a 5 lavaggi, controllo del crespo e capelli più forti contro la rottura.",
+        benefits: ["Idratazione fino a 5 lavaggi", "Rinforza e previene la rottura", "Controlla il crespo anche con l'umidità"],
+        affiliateUrl: "https://www.amazon.it/dp/B0FLTGFKPR?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61maAsxHUAL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/91FjXNacA5L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81CygJNPSZL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0BZZK86T3 — 4,5★, 2.667 recensioni, 37,10 € (verificato il 28/10/2026)
+        id: "kerastase-masquintense",
+        title: "Kérastase Nutritive Masquintense Riche – Maschera",
+        category: "Cura dei capelli",
+        description: "Maschera nutriente dalla formula ricca per capelli molto secchi, da medi a spessi: si applica sulle lunghezze, si lascia in posa 3-5 minuti e si risciacqua.",
+        benefits: ["Per capelli molto secchi, medi o spessi", "Formula cremosa e ricca", "Posa di soli 3-5 minuti"],
+        affiliateUrl: "https://www.amazon.it/dp/B0BZZK86T3?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61El0X71EiL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61mPnD30S+L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71bhOtYvcTL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07D37SBHF — 4,5★, 89.400 recensioni, 34,50 € (verificato il 28/10/2026)
+        id: "olaplex-n5-balsamo",
+        title: "OLAPLEX N°5 Bond Maintenance – Balsamo",
+        category: "Cura dei capelli",
+        description: "Il balsamo della linea OLAPLEX che aiuta a mantenere la struttura del capello: adatto a tutti i tipi di capelli, anche colorati e trattati.",
+        benefits: ["Mantiene i legami del capello", "Adatto a tutti i tipi di capelli", "Tra i più venduti della categoria"],
+        affiliateUrl: "https://www.amazon.it/dp/B07D37SBHF?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61oQraiFIBL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81rfFn-7jML._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61nptjae7hL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B082WSYYCX — 4,5★, 6.375 recensioni, 31,92 € (verificato il 28/10/2026)
+        id: "bellissima-k9-phon",
+        title: "Bellissima Imetec K9 2300 – Asciugacapelli ionico",
+        category: "Styling capelli",
+        description: "Asciugacapelli da 2300 W con ionizzatore per un'asciugatura rapida che riduce l'effetto crespo. Con diffusore per i ricci e colpo d'aria fredda per fissare la piega.",
+        benefits: ["2300 W per asciugare in fretta", "Ioni contro l'effetto crespo", "Diffusore incluso"],
+        affiliateUrl: "https://www.amazon.it/dp/B082WSYYCX?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71Xxg1fJNwL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61p-X0ny2iL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61WYZ8LWaaL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B08LVXG2V1 — 4,5★, 10.769 recensioni, 51,84 € (verificato il 28/10/2026)
+        id: "bellissima-diffon-ricci",
+        title: "Bellissima Imetec Diffon DF1 3000 – Diffusore per ricci",
+        category: "Styling capelli",
+        description: "Diffusore ad aria calda da 700 W con tecnologia ceramica e 12 dita lunghe: asciuga i ricci con delicatezza, valorizzandone volume ed elasticità naturali.",
+        benefits: ["Pensato per capelli ricci e mossi", "Tecnologia ceramica anticrespo", "12 dita per un'asciugatura uniforme"],
+        affiliateUrl: "https://www.amazon.it/dp/B08LVXG2V1?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71NzMtraMuL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61VxlbtAYAL._AC_SL1080_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81t8NQuuu1L._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B09CKSSXHD — 4,5★, 2.516 recensioni, 41,90 € (verificato il 28/10/2026)
+        id: "revlon-one-step",
+        title: "Revlon One-Step – Spazzola asciugacapelli volumizzante",
+        category: "Styling capelli",
+        description: "La celebre spazzola ad aria calda 2 in 1 di Revlon: asciuga, districa e dona volume in un solo passaggio, con tecnologia ionica per una piega lucida.",
+        benefits: ["Asciuga e dà volume insieme", "Tecnologia ionica anticrespo", "Piega da salone in meno tempo"],
+        affiliateUrl: "https://www.amazon.it/dp/B09CKSSXHD?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/7127u-lWBAL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71H8rQcvlpL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/713TLoFarBL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0CCYPKJHL — 4,5★, 9.806 recensioni, 140,99 € (verificato il 28/10/2026)
+        id: "ghd-original-piastra",
+        title: "ghd original – Piastra professionale in ceramica",
+        category: "Styling capelli",
+        description: "L'iconica piastra ghd con tecnologia single zone per un calore uniforme: liscia, crea onde naturali o ricci definiti grazie al corpo arrotondato. Pronta in 30 secondi.",
+        benefits: ["Calore uniforme single zone", "Liscia, onde e ricci", "Pronta all'uso in 30 secondi"],
+        affiliateUrl: "https://www.amazon.it/dp/B0CCYPKJHL?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61XFX1YwRVL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/618PWBT96dL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71uESf-VtlL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B00MCSW8X0 — 4,6★, 31.561 recensioni, 29,90 € (verificato il 28/10/2026)
+        id: "remington-piastra-larga",
+        title: "Remington S5525 – Piastra a lamelle larghe",
+        category: "Styling capelli",
+        description: "Piastra per capelli con lamelle larghe, pensata per capelli lunghi e folti: una delle più vendute e recensite su Amazon.it.",
+        benefits: ["Lamelle larghe per capelli lunghi", "Oltre 30.000 recensioni", "Marchio Remington"],
+        affiliateUrl: "https://www.amazon.it/dp/B00MCSW8X0?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61Smx1StfQL._AC_SL1000_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/716UOEYqGxL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71UBz6bZXRL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07W72TDM2 — 4,5★, 4.042 recensioni, 24,99 € (verificato il 28/10/2026)
+        id: "babyliss-ferro-10mm",
+        title: "BaByliss – Ferro arricciacapelli 10 mm",
+        category: "Styling capelli",
+        description: "Ferro da 10 mm con rivestimento in ceramica al quarzo per ricci piccoli, definiti e duraturi, anche sui capelli corti. Riscaldamento rapido e temperatura regolabile.",
+        benefits: ["Ricci definiti anche su capelli corti", "Rivestimento in ceramica al quarzo", "Temperatura regolabile da 160 a 210 °C"],
+        affiliateUrl: "https://www.amazon.it/dp/B07W72TDM2?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61oSSpMRzmL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81kDhsIyyUL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81VFIOOmUrL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0C37HBNPF — 4,6★, 2.468 recensioni, 25,90 € (verificato il 28/10/2026)
+        id: "ghd-spazzola-tonda",
+        title: "ghd The Blow Dryer – Spazzola tonda in ceramica",
+        category: "Styling capelli",
+        description: "Spazzola tonda professionale con cilindro in ceramica da 45 mm che trattiene il calore: velocizza la piega e crea volume e onde morbide.",
+        benefits: ["Cilindro in ceramica da 45 mm", "Volume e onde durante la piega", "Districa senza tirare"],
+        affiliateUrl: "https://www.amazon.it/dp/B0C37HBNPF?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61izqe891vL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61EFrPSxR4L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61hMJqCO2CL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B08ZXY1B7H — 4,6★, 10.985 recensioni, 55,95 € (verificato il 28/10/2026)
+        id: "mugler-alien-edp",
+        title: "MUGLER Alien – Eau de Parfum donna",
+        category: "Profumi",
+        description: "Fragranza floreale, ambrata e legnosa con gelsomino sambac, cashmeran e ambra bianca: un classico intenso e magnetico. Il flacone è ricaricabile.",
+        benefits: ["Note di gelsomino sambac e ambra bianca", "Floreale, ambrato e legnoso", "Flacone ricaricabile"],
+        affiliateUrl: "https://www.amazon.it/dp/B08ZXY1B7H?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/512y06L3Q0L._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71ubTCOdyDL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/61b9W8QNIjL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0009STDD8 — 4,5★, 20.656 recensioni, 42,52 € (verificato il 28/10/2026)
+        id: "calvin-klein-obsession",
+        title: "Calvin Klein Obsession – Eau de Parfum donna 100 ml",
+        category: "Profumi",
+        description: "Un grande classico della profumeria femminile firmato Calvin Klein, in formato Eau de Parfum da 100 ml.",
+        benefits: ["Eau de Parfum da donna", "Formato da 100 ml", "Oltre 20.000 recensioni"],
+        affiliateUrl: "https://www.amazon.it/dp/B0009STDD8?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61SZIyccZRL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71ReusANJxL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81-h8oeRPYL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B000P20R8I — 4,6★, 20.609 recensioni, 23,80 € (verificato il 28/10/2026)
+        id: "britney-spears-fantasy",
+        title: "Britney Spears Fantasy – Eau de Parfum 100 ml",
+        category: "Profumi",
+        description: "Il profumo dolce e giocoso di Britney Spears, nel suo flacone rosa a forma di gioiello: tra i più venduti e recensiti su Amazon.it.",
+        benefits: ["Eau de Parfum da donna", "Formato da 100 ml", "Oltre 20.000 recensioni"],
+        affiliateUrl: "https://www.amazon.it/dp/B000P20R8I?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61Lgj54cqDL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61qFcoi-ExL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81t5fqwVghL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07JRG42D9 — 4,6★, 16.145 recensioni, 24,99 € (verificato il 28/10/2026)
+        id: "victorias-secret-bare-vanilla",
+        title: "Victoria's Secret Bare Vanilla – Body mist 250 ml",
+        category: "Profumi",
+        description: "L'acqua profumata per il corpo Bare Vanilla di Victoria's Secret, avvolgente e alla vaniglia: da vaporizzare sul corpo e sui vestiti durante la giornata.",
+        benefits: ["Profumo alla vaniglia", "Spray per il corpo da 250 ml", "Leggero, da rinnovare durante il giorno"],
+        affiliateUrl: "https://www.amazon.it/dp/B07JRG42D9?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61oq0d1mriL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/715QhluUscL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71m0N9-f-eL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0GS5CJ9R4 — 4,5★, 564 recensioni, 35,99 € (verificato il 28/10/2026)
+        id: "comfytemp-fascia-ciclo",
+        title: "Comfytemp – Fascia riscaldante senza fili per il ciclo",
+        category: "Ciclo mestruale e comfort",
+        description: "Fascia riscaldante senza fili da indossare in vita, con calore uniforme al grafene e vibrazione con due motori: da portare a casa, in ufficio o in giro nei giorni del ciclo.",
+        benefits: ["Calore uniforme al grafene", "Vibrazione con doppio motore", "Senza fili, cintura lunga 150 cm"],
+        affiliateUrl: "https://www.amazon.it/dp/B0GS5CJ9R4?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71efZZ0nlBL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71bpirr1NVL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71By2oVjipL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0DG2RFN76 — 4,6★, 455 recensioni, 29,95 € (verificato il 28/10/2026)
+        id: "mylily-borsa-acqua-calda",
+        title: "MYLILY – Borsa dell'acqua calda con cintura e fodera",
+        category: "Ciclo mestruale e comfort",
+        description: "Borsa dell'acqua calda da 1 litro con fodera in peluche e cintura regolabile: resta ferma su pancia, schiena o collo e ti lascia le mani libere.",
+        benefits: ["Cintura regolabile da 80 a 130 cm", "Gomma naturale senza BPA", "Fodera e cintura lavabili"],
+        affiliateUrl: "https://www.amazon.it/dp/B0DG2RFN76?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/810Kd-1jMyL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81vWjvv7lzL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81eSZcwF82L._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B09CTZF711 — 4,5★, 785 recensioni, 43,99 € (verificato il 28/10/2026)
+        id: "imetec-termoforo",
+        title: "Imetec Intellisense Comfort – Termoforo per schiena e addome",
+        category: "Ciclo mestruale e comfort",
+        description: "Termoforo multiuso con tecnologia Intellisense che adatta il calore all'uso, in morbido micro-peluche: 5 temperature e spegnimento automatico dopo 3 ore.",
+        benefits: ["5 temperature selezionabili", "Spegnimento automatico dopo 3 ore", "Tessuto in micro-peluche e pile"],
+        affiliateUrl: "https://www.amazon.it/dp/B09CTZF711?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/81+dtl5PJBL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81JWySphfFL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/91XvxE5yJOL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07QDT39ST — 4,6★, 6.909 recensioni, 30,36 € (verificato il 28/10/2026)
+        id: "warmies-cuscino-lavanda",
+        title: "warmies – Cuscino termico ornitorinco alla lavanda",
+        category: "Ciclo mestruale e comfort",
+        description: "Un tenero peluche di circa 40 cm con imbottitura estraibile di miglio e lavanda: si scalda nel microonde e regala un calore morbido e profumato nelle serate di relax.",
+        benefits: ["Imbottitura di miglio e lavanda", "Imbottitura estraibile", "Si scalda nel microonde seguendo le istruzioni"],
+        affiliateUrl: "https://www.amazon.it/dp/B07QDT39ST?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/81jYyUCBAkL._SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81TkNmwBwbL._SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71yb8q6gI+L._SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0F5HWLJ9Z — 4,5★, 325 recensioni, 35,90 € (verificato il 28/10/2026)
+        id: "double-twenty-cuscino-cervicale",
+        title: "Double Twenty – Cuscino cervicale in memory foam",
+        category: "Sonno e relax",
+        description: "Cuscino in memory foam ad alta densità, alto 12 cm: sostiene testa e collo in modo stabile e si adatta gradualmente alla forma del corpo. Federa traspirante all'aloe vera.",
+        benefits: ["Memory foam ad alta densità", "Altezza 12 cm, 72 x 42 cm", "Federa traspirante all'aloe vera"],
+        affiliateUrl: "https://www.amazon.it/dp/B0F5HWLJ9Z?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71pcJHnuLnL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/712OrY20KzL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81WtMvkGGEL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B089WBV13K — 4,5★, 2.380 recensioni, 27,99 € (verificato il 28/10/2026)
+        id: "zimasilk-mascherina-seta",
+        title: "ZIMASILK – Mascherina per dormire in seta di gelso",
+        category: "Sonno e relax",
+        description: "Mascherina in seta di gelso 22 momme su entrambi i lati, imbottita anch'essa di seta: leggera e morbida, con fascia in seta che non tira i capelli.",
+        benefits: ["100% seta di gelso 22 momme", "Fascia in seta, non elastica", "Comoda anche dormendo sul fianco"],
+        affiliateUrl: "https://www.amazon.it/dp/B089WBV13K?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/618STgaSFjL._AC_SL1068_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61ezl52XdlL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71u-AM6gfkL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0BRKKWCCS — 4,6★, 1.662 recensioni, 54,95 € (verificato il 28/10/2026)
+        id: "ella-coperta-ponderata",
+        title: "Ella – Coperta ponderata 135 x 200 cm, 7 kg",
+        category: "Sonno e relax",
+        description: "Coperta pesante riempita di microsfere di vetro distribuite su 7 strati: il suo peso avvolgente accompagna il riposo e il relax sul divano.",
+        benefits: ["Peso di 7 kg distribuito in modo uniforme", "Tessuto certificato OEKO-TEX", "Microsfere di vetro anallergiche"],
+        affiliateUrl: "https://www.amazon.it/dp/B0BRKKWCCS?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/81E1toAtI0L._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81mj5P7FClL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/815Vj43lpKL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0BGLTHBV6 — 4,5★, 1.499 recensioni, 32,99 € (verificato il 28/10/2026)
+        id: "salking-diffusore-sale",
+        title: "SALKING – Diffusore di aromi con lampada di sale",
+        category: "Sonno e relax",
+        description: "Diffusore a ultrasuoni per oli essenziali con effetto fiamma e cristalli di sale rosa dell'Himalaya: luce calda e profumo leggero per un'atmosfera rilassante.",
+        benefits: ["Diffusore e lampada di sale in uno", "Effetto fiamma, 3 livelli di luce", "Serbatoio da 150 ml con timer"],
+        affiliateUrl: "https://www.amazon.it/dp/B0BGLTHBV6?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/714KDyPFnnL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71zvQE7vqZL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71Zo7Fe1mlL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B074FFW5W4 — 4,5★, 9.394 recensioni, 99,95 € (verificato il 28/10/2026)
+        id: "lectrofan-rumore-bianco",
+        title: "LectroFan Evo – Generatore di rumore bianco",
+        category: "Sonno e relax",
+        description: "Dispositivo da comodino con 22 suoni non ripetitivi, tra ventole, rumore bianco, rosa e marrone e onde del mare, per coprire i rumori di fondo mentre ti addormenti.",
+        benefits: ["22 suoni: ventole, rumori colorati, mare", "Suoni continui e non ripetitivi", "Alimentazione da rete o USB"],
+        affiliateUrl: "https://www.amazon.it/dp/B074FFW5W4?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71+wuBCtZwL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81WJWQEonCL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71hlg7uPdML._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B01BT1R64G — 4,6★, 5.366 recensioni, 34,95 € (verificato il 28/10/2026)
+        id: "third-of-life-volar",
+        title: "Third of Life VOLAR – Cuscino da viaggio in memory foam",
+        category: "Sonno e relax",
+        description: "Cuscino cervicale da viaggio in memory foam, progettato da esperti del sonno: leggero (circa 500 g) e con sacca da trasporto, per treno, aereo o un riposino sul divano.",
+        benefits: ["Memory foam per collo e nuca", "Leggero, circa 500 g", "Sacca da viaggio inclusa"],
+        affiliateUrl: "https://www.amazon.it/dp/B01BT1R64G?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61jLNEFPIcL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61zkXuWaUKL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71siMqdIkGL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B01F24ZBE8 — 4,6★, 3.145 recensioni, 31,04 € (verificato il 28/10/2026)
+        id: "sleepling-cuscino-gambe",
+        title: "sleepling – Cuscino per gambe 40 x 68 cm",
+        category: "Sonno e relax",
+        description: "Cuscino a cuneo da mettere sotto le gambe quando sei sdraiata, per tenerle sollevate e riposare in una posizione più comoda. Prodotto in UE, fodera lavabile.",
+        benefits: ["Tiene le gambe sollevate", "Imbottitura in schiuma comfort", "Fodera lavabile fino a 60 °C"],
+        affiliateUrl: "https://link.amazon/B00Kw9Pmm",
+        images: [
+          "https://m.media-amazon.com/images/I/61T6OHdZPcL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61NN3cTIfTL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71AOr-GICkL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B017RJW8OW — 4,6★, 6.461 recensioni, 199,00 € (verificato il 28/10/2026)
+        id: "donnerberg-massaggiatore-shiatsu",
+        title: "Donnerberg – Massaggiatore shiatsu per collo e spalle",
         category: "Benessere quotidiano",
-        description: "Un accessorio versatile per accompagnare lo stretching e i momenti di movimento dolce a casa.",
-        benefits: ["Per stretching e movimento dolce", "Leggero e facile da riporre", "Adatto alla pratica a casa"],
-        affiliateUrl: "",
+        description: "Massaggiatore con testine rotanti e calore, da appoggiare su collo, spalle o schiena per una pausa rilassante. Con timer, protezione dal surriscaldamento e adattatore per l'auto.",
+        benefits: ["Massaggio shiatsu con calore", "3 fodere lavabili e adattatore auto", "Garanzia del produttore di 7 anni"],
+        affiliateUrl: "https://www.amazon.it/dp/B017RJW8OW?tag=amzaff0ba-21",
         images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
+          "https://m.media-amazon.com/images/I/71a-VL0RezL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71P43DjZDAL._AC_SL1500_.jpg"   // foto 2
         ]
       },
       {
-        id: "cuscino-lombare",
-        title: "Cuscino lombare per la seduta",
+        // Amazon.it ASIN B07H9D2NGW — 4,6★, 2.509 recensioni, 48,95 € (verificato il 28/10/2026)
+        id: "bodhi-vital-agopressione",
+        title: "Bodhi Vital – Set tappetino e cuscino per agopressione",
         category: "Benessere quotidiano",
-        description: "Un supporto da sistemare sulla sedia o in auto, per rendere più confortevoli le ore passate seduta.",
-        benefits: ["Più comfort sulla sedia", "In ufficio, a casa o in auto", "Facile da spostare"],
-        affiliateUrl: "",
+        description: "Tappetino e cuscino ricoperti di piccole punte su cui sdraiarsi per 10-20 minuti: una sensazione intensa all'inizio, che molte trasformano in una pausa di relax quotidiana.",
+        benefits: ["Tappetino e cuscino per il collo", "Custodia inclusa", "Da usare 10-20 minuti al giorno"],
+        affiliateUrl: "https://www.amazon.it/dp/B07H9D2NGW?tag=amzaff0ba-21",
         images: [
-          "",   // foto 1 (principale)
-          "",   // foto 2
-          ""    // foto 3
+          "https://m.media-amazon.com/images/I/71NYzmM4ecL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61RCEwL2I-L._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71Kx2VDb5uL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0040EGNIU — 4,7★, 16.163 recensioni, 34,99 € (verificato il 28/10/2026)
+        id: "triggerpoint-grid",
+        title: "TriggerPoint GRID – Rullo in schiuma",
+        category: "Benessere quotidiano",
+        description: "Rullo in schiuma a densità multipla con anima rigida e cava: un classico per lo stretching, il riscaldamento e il recupero dopo il movimento.",
+        benefits: ["Superficie a più densità", "Anima rigida che non si deforma", "Leggero e facile da pulire"],
+        affiliateUrl: "https://www.amazon.it/dp/B0040EGNIU?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71baGwPZOWL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/7180zCm33DL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/71QM-SFt-wL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07WVVK1GX — 4,6★, 17.724 recensioni, 37,84 € (verificato il 28/10/2026)
+        id: "toplus-tappetino-yoga",
+        title: "TOPLUS – Tappetino yoga antiscivolo in TPE",
+        category: "Benessere quotidiano",
+        description: "Tappetino morbido e antiscivolo in TPE, senza lattice né PVC, per yoga, pilates e stretching a casa. Leggero, con tracolla per portarlo con te.",
+        benefits: ["TPE senza lattice né PVC", "Superficie antiscivolo e imbottita", "Tracolla inclusa"],
+        affiliateUrl: "https://www.amazon.it/dp/B07WVVK1GX?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71j3SbFZ7IL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/81WVpJanIvL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/715Uk-1raNL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B0FQVH87JW — 4,6★, 1.278 recensioni, 39,99 € (verificato il 28/10/2026)
+        id: "cotsoco-pistola-massaggio",
+        title: "Cotsoco – Pistola massaggiante con testina riscaldata",
+        category: "Benessere quotidiano",
+        description: "Massaggiatore a percussione con 20 velocità, display touch e 10 testine, di cui una riscaldata fino a 55 °C, per un massaggio dopo lo sport o a fine giornata.",
+        benefits: ["20 velocità, display LCD touch", "10 testine, una riscaldata", "Massaggio a percussione profondo"],
+        affiliateUrl: "https://www.amazon.it/dp/B0FQVH87JW?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/71az8jlm0kL._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/61m5PZ6TIgL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/614Ec-h3ncL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07NY4CMZK — 4,5★, 88.402 recensioni, 26,99 € (verificato il 28/10/2026)
+        id: "sinophant-leggings",
+        title: "SINOPHANT – Leggings sportivi donna a vita alta",
+        category: "Benessere quotidiano",
+        description: "Leggings a vita alta, coprenti ed elastici, per yoga, palestra o tempo libero: tra i capi sportivi da donna più recensiti su Amazon.it.",
+        benefits: ["Vita alta che contiene la pancia", "Tessuto elastico e coprente", "Per sport e tempo libero"],
+        affiliateUrl: "https://www.amazon.it/dp/B07NY4CMZK?tag=amzaff0ba-21",
+        images: [
+          "https://m.media-amazon.com/images/I/61NyUgdUw2S._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71FjKtImGeS._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/713qznQWTtL._AC_SL1500_.jpg"   // foto 3
+        ]
+      },
+      {
+        // Amazon.it ASIN B07Q4JVFNH — 4,7★, 4.559 recensioni, 39,70 € (verificato il 28/10/2026)
+        id: "dilamababy-cuscino-gravidanza",
+        title: "Dilamababy – Cuscino gravidanza e allattamento",
+        category: "Gravidanza e maternità",
+        description: "Cuscino in fiocchi di memory e fibra, prodotto in Italia: sostiene pancia e schiena nel riposo sul fianco e, grazie ai bottoni, diventa un cuscino per l'allattamento.",
+        benefits: ["Sostegno per pancia e schiena", "Si trasforma in cuscino da allattamento", "Fodera in cotone OEKO-TEX sfoderabile"],
+        affiliateUrl: "https://link.amazon/B0449ygj0",
+        images: [
+          "https://m.media-amazon.com/images/I/714Q3SbPo3L._AC_SL1500_.jpg",   // foto 1 (principale)
+          "https://m.media-amazon.com/images/I/71wLLi2L8bL._AC_SL1500_.jpg",   // foto 2
+          "https://m.media-amazon.com/images/I/81GInuCXF7L._AC_SL1500_.jpg"   // foto 3
         ]
       }
     ];
@@ -1856,10 +2362,13 @@
        ================================================================ */
     const CATEGORIES = [
       { label: "Cura della pelle",          tint: "#EAD6D1" },
-      { label: "Capelli e bellezza",        tint: "#EBDDCB" },
+      { label: "Cura dei capelli",          tint: "#EBDDCB" },
+      { label: "Styling capelli",           tint: "#E9D9D3" },
+      { label: "Profumi",                   tint: "#E6D3DD" },
       { label: "Ciclo mestruale e comfort", tint: "#E7CDC8" },
       { label: "Sonno e relax",             tint: "#E1DDE6" },
-      { label: "Benessere quotidiano",      tint: "#DFE6DA" }
+      { label: "Benessere quotidiano",      tint: "#DFE6DA" },
+      { label: "Gravidanza e maternità",    tint: "#F0E2D8" }
     ];
 
     /* ================================================================
@@ -2241,6 +2750,8 @@
     /* ---------- Carosello dei prodotti nell'hero ---------- */
     // ✏️ Tempo tra un prodotto e l'altro, in millisecondi (3300 = 3,3 secondi)
     const CAROUSEL_INTERVAL = 3300;
+    // ✏️ Numero massimo di prodotti nel carosello (i primi dell'elenco con link e foto)
+    const CAROUSEL_MAX = 10;
 
     function createSlide(product, position, total) {
       const slide = document.createElement("div");
@@ -2295,7 +2806,7 @@
       // Solo i prodotti con link affiliato valido e foto
       const items = products.filter(function (p) {
         return checkAffiliateUrl(p.affiliateUrl).ok && getProductImages(p).length > 0;
-      });
+      }).slice(0, CAROUSEL_MAX);
 
       if (!items.length) {
         root.hidden = true;
@@ -2527,5 +3038,3 @@
   </script>
 </body>
 </html>
-
-
