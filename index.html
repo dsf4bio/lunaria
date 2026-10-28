@@ -866,7 +866,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 0 0 14px;
+      margin: 0 0 28px;
     }
     .filter-chip {
       display: inline-flex;
@@ -886,11 +886,12 @@
     .filter-chip[aria-pressed="true"] { background: var(--c-ink); border-color: var(--c-ink); color: var(--c-bg); }
     .filter-count { font-size: 0.75rem; opacity: 0.7; }
 
-    /* Avviso di affiliazione sopra i prodotti */
-    .affiliate-note {
-      margin: 0 0 28px;
-      font-size: 0.85rem;
+    /* Nota discreta in fondo al catalogo */
+    .catalog-note {
+      margin: 32px 0 0;
+      font-size: 0.8rem;
       color: var(--c-muted);
+      text-align: center;
     }
 
     @media (max-width: 640px) {
@@ -1470,11 +1471,9 @@
             <p class="eyebrow">La selezione</p>
             <h2 class="section-title" id="catalog-title">Idee per prenderti cura di te</h2>
           </div>
-          <p class="section-intro">Prodotti beauty e benessere per donna scelti tra i best seller di Amazon.it: skincare, cura dei capelli, styling, profumi, relax e comfort, selezionati tra articoli con almeno 4,5 stelle e oltre 100 recensioni.</p>
         </div>
 
         <div class="filters" id="filters" role="group" aria-label="Filtra i prodotti per categoria"></div>
-        <p class="affiliate-note">I pulsanti “Vedi su Amazon” sono link di affiliazione: in qualità di Affiliato Amazon, Lunaria riceve un guadagno dagli acquisti idonei, senza costi in più per te.</p>
 
         <!-- I prodotti qui sotto sono scritti anche nell'HTML per Google: li rigenera strumenti/aggiorna-seo.mjs.
              All'apertura della pagina il JavaScript li sostituisce con le schede interattive. -->
@@ -1531,6 +1530,8 @@
 <article class="card" id="p-sinophant-leggings" data-category="Benessere quotidiano" style="--tint: #DFE6DA"><div class="card-media"><img src="https://m.media-amazon.com/images/I/61NyUgdUw2S._AC_SL600_.jpg" alt="SINOPHANT – Leggings sportivi donna a vita alta" loading="lazy" width="600" height="600" referrerpolicy="no-referrer"></div><div class="card-body"><p class="card-cat">Benessere quotidiano</p><h3 class="card-title">SINOPHANT – Leggings sportivi donna a vita alta</h3><div class="card-details"><p class="card-desc">Leggings a vita alta, coprenti ed elastici, per yoga, palestra o tempo libero: tra i capi sportivi da donna più recensiti su Amazon.it.</p><ul class="card-benefits"><li>Vita alta che contiene la pancia</li><li>Tessuto elastico e coprente</li><li>Per sport e tempo libero</li></ul></div><div class="card-actions"><a class="btn btn-affiliate" href="https://www.amazon.it/dp/B07NY4CMZK?tag=amzaff0ba-21" target="_blank" rel="sponsored nofollow noopener noreferrer">Vedi su Amazon</a></div></div></article>
 <article class="card" id="p-dilamababy-cuscino-gravidanza" data-category="Gravidanza e maternità" style="--tint: #F0E2D8"><div class="card-media"><img src="https://m.media-amazon.com/images/I/714Q3SbPo3L._AC_SL600_.jpg" alt="Dilamababy – Cuscino gravidanza e allattamento" loading="lazy" width="600" height="600" referrerpolicy="no-referrer"></div><div class="card-body"><p class="card-cat">Gravidanza e maternità</p><h3 class="card-title">Dilamababy – Cuscino gravidanza e allattamento</h3><div class="card-details"><p class="card-desc">Cuscino in fiocchi di memory e fibra, prodotto in Italia: sostiene pancia e schiena nel riposo sul fianco e, grazie ai bottoni, diventa un cuscino per l'allattamento.</p><ul class="card-benefits"><li>Sostegno per pancia e schiena</li><li>Si trasforma in cuscino da allattamento</li><li>Fodera in cotone OEKO-TEX sfoderabile</li></ul></div><div class="card-actions"><a class="btn btn-affiliate" href="https://link.amazon/B0449ygj0" target="_blank" rel="sponsored nofollow noopener noreferrer">Vedi su Amazon</a></div></div></article>
 <!-- PRODOTTI:FINE --></div>
+
+        <p class="catalog-note">Best seller per donna su Amazon.it, scelti tra prodotti con almeno 4,5 stelle e oltre 100 recensioni.</p>
 
         <!-- Descrizione condivisa dai pulsanti di affiliazione (lettori di schermo) -->
         <p class="visually-hidden" id="affiliate-hint">Apre la pagina del prodotto su Amazon.it in una nuova scheda. Link di affiliazione.</p>
