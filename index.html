@@ -57,6 +57,15 @@
       --c-alert-bg: #F6E9E5;
       --c-alert-ink: #7A4337;
 
+      /* Giallo Amazon — pulsanti d'acquisto */
+      --c-amz: #FFD814;
+      --c-amz-hover: #F7CA00;
+      --c-amz-active: #F0B800;
+      --c-amz-border: #FCD200;
+      --c-amz-ink: #0F1111;
+      --shadow-amz: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 2px 5px rgba(213, 169, 0, 0.35);
+      --shadow-amz-hover: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 8px 18px -6px rgba(213, 169, 0, 0.6);
+
       /* Caratteri di sistema: eleganti, veloci e senza richieste esterne */
       --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "Hoefler Text", Georgia, "Times New Roman", serif;
       --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -180,24 +189,30 @@
       min-height: 50px;
       padding: 14px 28px;
       border-radius: 999px;
-      border: 1px solid var(--c-ink);
-      background: var(--c-ink);
-      color: var(--c-bg);
-      font-weight: 500;
-      letter-spacing: 0.02em;
+      border: 1px solid var(--c-amz-border);
+      background: var(--c-amz);
+      color: var(--c-amz-ink);
+      font-weight: 600;
+      letter-spacing: 0.01em;
       text-decoration: none;
       cursor: pointer;
-      transition: background-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.25s var(--ease);
+      box-shadow: var(--shadow-amz);
+      transition: background-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
     }
-    .btn:hover { background: var(--c-ink-hover); border-color: var(--c-ink-hover); transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
+    .btn:hover { background: var(--c-amz-hover); border-color: var(--c-amz-hover); box-shadow: var(--shadow-amz-hover); transform: translateY(-1px); }
+    .btn:active { background: var(--c-amz-active); border-color: var(--c-amz-active); box-shadow: var(--shadow-amz); transform: translateY(0); }
+    .btn:focus-visible { outline-color: var(--c-amz-ink); }
+    .btn svg { transition: transform 0.25s var(--ease); }
+    .btn:hover svg { transform: translateX(2px); }
+    .hero-actions .btn:hover svg { transform: translateY(2px); }
 
     .btn-ghost {
       background: transparent;
       color: var(--c-ink);
       border-color: var(--c-line-strong);
+      box-shadow: none;
     }
-    .btn-ghost:hover { background: var(--c-card); color: var(--c-ink); border-color: var(--c-ink); }
+    .btn-ghost:hover { background: var(--c-card); color: var(--c-ink); border-color: var(--c-ink); box-shadow: var(--shadow-soft); }
 
     .btn svg { width: 16px; height: 16px; flex: none; }
 
@@ -275,8 +290,9 @@
       content: "";
       position: absolute;
       left: 0; right: 0; bottom: 4px;
-      height: 1px;
-      background: currentColor;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--c-amz);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s var(--ease);
@@ -408,7 +424,7 @@
       cursor: pointer;
       transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
     }
-    .carousel-btn:hover { background: var(--c-card); border-color: var(--c-ink); }
+    .carousel-btn:hover { background: var(--c-amz); border-color: var(--c-amz-border); color: var(--c-amz-ink); }
     .carousel-btn svg { width: 18px; height: 18px; }
     .carousel-btn svg[hidden] { display: none; }
 
@@ -437,7 +453,7 @@
       background: rgba(63, 57, 54, 0.25);
       transition: width 0.3s var(--ease), background-color 0.3s var(--ease);
     }
-    .carousel-dot[aria-current="true"]::before { width: 22px; background: var(--c-ink); }
+    .carousel-dot[aria-current="true"]::before { width: 22px; background: var(--c-amz-hover); box-shadow: 0 0 0 1px rgba(15, 17, 17, 0.15); }
 
     .hero h1 {
       font-family: var(--font-serif);
@@ -450,6 +466,11 @@
     .hero h1 em {
       font-style: italic;
       color: #5E5752;
+      /* evidenziatore giallo sotto le parole in corsivo */
+      background: linear-gradient(transparent 68%, rgba(255, 216, 20, 0.55) 68%, rgba(255, 216, 20, 0.55) 92%, transparent 92%);
+      padding-inline: 0.06em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
     }
     .hero .eyebrow { color: #5E5752; }
 
@@ -480,7 +501,8 @@
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--c-sage-deep);
+      background: var(--c-amz-hover);
+      box-shadow: 0 0 0 3px rgba(255, 216, 20, 0.25);
     }
 
     /* ==============================================================
@@ -505,7 +527,9 @@
       background: var(--c-card);
       border: 1px solid var(--c-line);
       border-radius: var(--radius-md);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
     }
+    .value:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); border-color: var(--c-line-strong); }
 
     .value-icon {
       flex: none;
@@ -578,7 +602,10 @@
     .card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
+      border-color: var(--c-line-strong);
     }
+    .card-media img { transition: transform 0.6s var(--ease); }
+    .card:hover .card-media img { transform: scale(1.04); }
 
     /* Riquadro immagine: altezza fissata con padding-bottom e foto in posizione
        assoluta. Funziona in modo identico su tutti i browser, Safari/iPhone compresi. */
@@ -677,7 +704,7 @@
       background: rgba(63, 57, 54, 0.22);
       transition: width 0.25s var(--ease), background-color 0.25s var(--ease);
     }
-    .gallery-dots span.is-active { width: 18px; background: var(--c-ink); }
+    .gallery-dots span.is-active { width: 18px; background: var(--c-amz-hover); }
 
     /* Su smartphone e tablet si scorre con il dito: frecce nascoste */
     @media (hover: none) {
@@ -809,7 +836,8 @@
       font-weight: 500;
       color: var(--c-ink);
       text-decoration: underline;
-      text-decoration-color: var(--c-rose-deep);
+      text-decoration-color: var(--c-amz-hover);
+      text-decoration-thickness: 2px;
       text-underline-offset: 5px;
       cursor: pointer;
     }
@@ -835,7 +863,7 @@
       width: 100%;
       min-height: 48px;
       padding: 12px 16px;
-      font-size: 0.93rem;
+      font-size: 0.95rem;
       line-height: 1.2;
       text-align: center;
     }
@@ -844,6 +872,7 @@
       color: var(--c-ink);
       border-style: dashed;
       border-color: var(--c-line-strong);
+      box-shadow: none;
     }
     .btn-affiliate.is-missing:hover { border-color: var(--c-ink); background: var(--c-bg); }
 
@@ -882,9 +911,10 @@
       cursor: pointer;
       transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
     }
-    .filter-chip:hover { border-color: var(--c-ink); }
+    .filter-chip:hover { border-color: var(--c-ink); background: #FFFBEA; }
     .filter-chip[aria-pressed="true"] { background: var(--c-ink); border-color: var(--c-ink); color: var(--c-bg); }
     .filter-count { font-size: 0.75rem; opacity: 0.7; }
+    .filter-chip[aria-pressed="true"] .filter-count { color: var(--c-amz); opacity: 1; }
 
     /* Nota discreta in fondo al catalogo */
     .catalog-note {
@@ -1050,7 +1080,7 @@
       text-decoration: none;
       font-size: 0.95rem;
     }
-    .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .footer-links a:hover { color: var(--c-amz); text-decoration: underline; text-underline-offset: 4px; }
     .site-footer :focus-visible { outline-color: var(--c-bg); }
 
     .footer-bottom {
@@ -1203,7 +1233,7 @@
       cursor: pointer;
       text-align: left;
     }
-    .footer-links .link-like:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .footer-links .link-like:hover { color: var(--c-amz); text-decoration: underline; text-underline-offset: 4px; }
 
     /* Banner cookie: informativo, non blocca la navigazione */
     .cookie-banner {
@@ -1351,7 +1381,7 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-      .card:hover, .btn:hover { transform: none; }
+      .card:hover, .btn:hover, .value:hover, .card:hover .card-media img { transform: none; }
     }
   </style>
 </head>
